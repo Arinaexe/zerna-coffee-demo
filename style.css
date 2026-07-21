@@ -1,0 +1,416 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --color-primary: #4b4a4a;
+  --color-accent: #FF7F50;
+  --color-secondary: #f0a316;
+  --color-bg: #faf8f4;
+  --color-dark: #1c1b1a;
+  --color-border: #ece7e0;
+  --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-lift: 0 20px 44px rgba(0, 0, 0, 0.14);
+  --radius: 14px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Manrope', system-ui, sans-serif;
+  color: var(--color-primary);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, .logo {
+  font-family: 'Playfair Display', serif;
+}
+
+/* ---------- шапка ---------- */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px 48px;
+  background: rgba(250, 248, 244, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.header.scrolled {
+  box-shadow: var(--shadow-soft);
+  border-color: var(--color-border);
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+.nav ul {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 15px;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.2s ease;
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transition: width 0.25s ease;
+}
+
+.nav a:hover {
+  color: var(--color-accent);
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 130px 32px 110px;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(255, 127, 80, 0.22), transparent 55%),
+    radial-gradient(circle at 80% 75%, rgba(240, 163, 22, 0.2), transparent 55%),
+    var(--color-dark);
+  color: #fff;
+  overflow: hidden;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.15;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.hero p {
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 520px;
+  margin: 0 auto 36px;
+}
+
+.hero-cta {
+  display: inline-block;
+  padding: 15px 38px;
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  box-shadow: 0 14px 34px rgba(255, 127, 80, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(255, 127, 80, 0.45);
+}
+
+/* ---------- заголовок секции ---------- */
+
+.section-heading {
+  text-align: center;
+  max-width: 540px;
+  margin: 0 auto 48px;
+}
+
+.section-eyebrow {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.section-heading h2 {
+  font-size: 30px;
+}
+
+/* ---------- преимущества ---------- */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  padding: 88px 48px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.feature {
+  text-align: center;
+  padding: 8px;
+}
+
+.feature-mark {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.feature h3 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.feature p {
+  font-size: 14px;
+  color: var(--color-primary);
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
+/* ---------- меню (карточки) ---------- */
+
+.catalog-section {
+  padding: 40px 0 100px;
+}
+
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 28px;
+  padding: 0 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.product-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lift);
+  border-color: var(--color-accent);
+}
+
+.product-image {
+  height: 160px;
+  border-radius: calc(var(--radius) - 4px);
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, rgba(240, 163, 22, 0.2), rgba(255, 127, 80, 0.2));
+}
+
+.product-card h3 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.product-card p {
+  font-size: 15px;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* ---------- контакты ---------- */
+
+.contacts {
+  padding: 90px 48px;
+  background: var(--color-dark);
+  color: #fff;
+}
+
+.contacts .section-eyebrow {
+  color: var(--color-secondary);
+}
+
+.contacts .section-heading h2 {
+  color: #fff;
+}
+
+.contacts-grid {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  flex: 1;
+  min-width: 200px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius);
+  padding: 26px;
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.contact-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.contact-value {
+  font-size: 17px;
+  font-weight: 700;
+  font-family: 'Manrope', sans-serif;
+}
+
+/* ---------- футер ---------- */
+
+.footer {
+  text-align: center;
+  padding: 28px;
+  color: var(--color-primary);
+  opacity: 0.7;
+  font-size: 13px;
+  background: var(--color-bg);
+}
+
+.footer a {
+  color: var(--color-accent);
+}
+
+/* ---------- анимация появления при прокрутке ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- мобильная адаптация ---------- */
+
+@media (max-width: 640px) {
+  .header {
+    padding: 14px 20px;
+    gap: 10px;
+  }
+
+  .nav ul {
+    gap: 14px;
+    row-gap: 8px;
+  }
+
+  .nav a {
+    font-size: 14px;
+  }
+
+  .hero {
+    padding: 80px 20px 64px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .features {
+    padding: 56px 20px 16px;
+    gap: 32px;
+  }
+
+  .catalog-section {
+    padding: 32px 0 64px;
+  }
+
+  .catalog {
+    padding: 0 20px;
+    gap: 20px;
+  }
+
+  .contacts {
+    padding: 56px 20px;
+  }
+
+  .contacts-grid {
+    flex-direction: column;
+  }
+
+  .section-heading {
+    margin-bottom: 32px;
+  }
+}
