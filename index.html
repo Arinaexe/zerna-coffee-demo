@@ -18,6 +18,10 @@
         <li><a href="#contacts">Контакты</a></li>
       </ul>
     </nav>
+    <div class="status-badge" id="statusBadge">
+      <span class="status-dot"></span>
+      <span class="status-text">Открыто сейчас</span>
+    </div>
   </header>
 
   <section class="hero">
@@ -25,6 +29,11 @@
     <h1>Зёрна</h1>
     <p>Кофе, который обжаривают, а не жгут. Своя обжарка каждую неделю, зерно напрямую от фермеров.</p>
     <a href="#menu" class="hero-cta">Смотреть меню</a>
+  </section>
+
+  <section class="stats reveal">
+    <p class="stats-number" data-target="342">0</p>
+    <p class="stats-label">чашек кофе сварено сегодня</p>
   </section>
 
   <section class="features reveal" id="about">
@@ -49,35 +58,96 @@
     <div class="section-heading reveal">
       <span class="section-eyebrow">Меню</span>
       <h2>Что попробовать</h2>
+      <p class="section-hint">Наведи (или тапни на телефоне) на карточку — покажем описание</p>
     </div>
     <div class="catalog">
       <div class="product-card">
-        <div class="product-image"></div>
+        <div class="product-image">
+          <svg class="cup-icon" viewBox="0 0 100 100" aria-hidden="true">
+            <path class="cup-steam" d="M38 28c-4-6 4-10 0-16" />
+            <path class="cup-steam cup-steam-2" d="M52 28c-4-6 4-10 0-16" />
+            <path class="cup-steam cup-steam-3" d="M65 30c-4-6 4-10 0-16" />
+            <path class="cup-body" d="M22 42h56v18a28 28 0 0 1-56 0z" />
+            <path class="cup-handle" d="M78 48h6a10 10 0 0 1 0 20h-6" />
+            <rect class="cup-saucer" x="14" y="86" width="72" height="6" rx="3" />
+          </svg>
+          <div class="product-description">Двойная порция, крепкий и плотный вкус</div>
+        </div>
         <h3>Эспрессо</h3>
         <p>180 ₽</p>
       </div>
       <div class="product-card">
-        <div class="product-image"></div>
+        <div class="product-image">
+          <svg class="cup-icon" viewBox="0 0 100 100" aria-hidden="true">
+            <path class="cup-steam" d="M38 28c-4-6 4-10 0-16" />
+            <path class="cup-steam cup-steam-2" d="M52 28c-4-6 4-10 0-16" />
+            <path class="cup-steam cup-steam-3" d="M65 30c-4-6 4-10 0-16" />
+            <path class="cup-body" d="M22 42h56v18a28 28 0 0 1-56 0z" />
+            <path class="cup-handle" d="M78 48h6a10 10 0 0 1 0 20h-6" />
+            <rect class="cup-saucer" x="14" y="86" width="72" height="6" rx="3" />
+          </svg>
+          <div class="product-description">Нежная молочная пенка, мягкий бархатистый вкус</div>
+        </div>
         <h3>Капучино</h3>
         <p>250 ₽</p>
       </div>
       <div class="product-card">
-        <div class="product-image"></div>
+        <div class="product-image">
+          <svg class="cup-icon" viewBox="0 0 100 100" aria-hidden="true">
+            <path class="cup-steam" d="M38 28c-4-6 4-10 0-16" />
+            <path class="cup-steam cup-steam-2" d="M52 28c-4-6 4-10 0-16" />
+            <path class="cup-steam cup-steam-3" d="M65 30c-4-6 4-10 0-16" />
+            <path class="cup-body" d="M22 42h56v18a28 28 0 0 1-56 0z" />
+            <path class="cup-handle" d="M78 48h6a10 10 0 0 1 0 20h-6" />
+            <rect class="cup-saucer" x="14" y="86" width="72" height="6" rx="3" />
+          </svg>
+          <div class="product-description">Меньше пенки, больше кофе — для тех, кто ценит эспрессо</div>
+        </div>
         <h3>Флэт уайт</h3>
         <p>270 ₽</p>
       </div>
       <div class="product-card">
-        <div class="product-image"></div>
+        <div class="product-image">
+          <svg class="cup-icon" viewBox="0 0 100 100" aria-hidden="true">
+            <path class="cup-steam" d="M38 28c-4-6 4-10 0-16" />
+            <path class="cup-steam cup-steam-2" d="M52 28c-4-6 4-10 0-16" />
+            <path class="cup-steam cup-steam-3" d="M65 30c-4-6 4-10 0-16" />
+            <path class="cup-body" d="M22 42h56v18a28 28 0 0 1-56 0z" />
+            <path class="cup-handle" d="M78 48h6a10 10 0 0 1 0 20h-6" />
+            <rect class="cup-saucer" x="14" y="86" width="72" height="6" rx="3" />
+          </svg>
+          <div class="product-description">Взбитые сливки прямо в чашке — сладко, тепло, уютно</div>
+        </div>
         <h3>Раф на овсяном молоке</h3>
         <p>320 ₽</p>
       </div>
       <div class="product-card">
-        <div class="product-image"></div>
+        <div class="product-image">
+          <svg class="cup-icon" viewBox="0 0 100 100" aria-hidden="true">
+            <path class="cup-steam" d="M38 28c-4-6 4-10 0-16" />
+            <path class="cup-steam cup-steam-2" d="M52 28c-4-6 4-10 0-16" />
+            <path class="cup-steam cup-steam-3" d="M65 30c-4-6 4-10 0-16" />
+            <path class="cup-body" d="M22 42h56v18a28 28 0 0 1-56 0z" />
+            <path class="cup-handle" d="M78 48h6a10 10 0 0 1 0 20h-6" />
+            <rect class="cup-saucer" x="14" y="86" width="72" height="6" rx="3" />
+          </svg>
+          <div class="product-description">Чистый вкус зерна, заваривается вручную по каплям</div>
+        </div>
         <h3>Фильтр-кофе V60</h3>
         <p>280 ₽</p>
       </div>
       <div class="product-card">
-        <div class="product-image"></div>
+        <div class="product-image">
+          <svg class="cup-icon" viewBox="0 0 100 100" aria-hidden="true">
+            <path class="cup-steam" d="M38 28c-4-6 4-10 0-16" />
+            <path class="cup-steam cup-steam-2" d="M52 28c-4-6 4-10 0-16" />
+            <path class="cup-steam cup-steam-3" d="M65 30c-4-6 4-10 0-16" />
+            <path class="cup-body" d="M22 42h56v18a28 28 0 0 1-56 0z" />
+            <path class="cup-handle" d="M78 48h6a10 10 0 0 1 0 20h-6" />
+            <rect class="cup-saucer" x="14" y="86" width="72" height="6" rx="3" />
+          </svg>
+          <div class="product-description">Освежает и бодрит — то, что нужно в жару</div>
+        </div>
         <h3>Кофе со льдом</h3>
         <p>260 ₽</p>
       </div>

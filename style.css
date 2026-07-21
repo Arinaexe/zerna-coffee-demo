@@ -181,6 +181,73 @@ h1, h2, .logo {
   font-size: 30px;
 }
 
+.section-hint {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--color-primary);
+  opacity: 0.55;
+}
+
+/* ---------- статус "открыто/закрыто" ---------- */
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3fae5c;
+  animation: status-pulse-open 2s infinite;
+}
+
+.status-badge.is-closed .status-dot {
+  background: #c0392b;
+  animation: status-pulse-closed 2s infinite;
+}
+
+@keyframes status-pulse-open {
+  0% { box-shadow: 0 0 0 0 rgba(63, 174, 92, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(63, 174, 92, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(63, 174, 92, 0); }
+}
+
+@keyframes status-pulse-closed {
+  0% { box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(192, 57, 43, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(192, 57, 43, 0); }
+}
+
+/* ---------- счётчик чашек ---------- */
+
+.stats {
+  text-align: center;
+  padding: 48px 32px 8px;
+}
+
+.stats-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.stats-label {
+  font-size: 14px;
+  color: var(--color-primary);
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
 /* ---------- преимущества ---------- */
 
 .features {
@@ -257,10 +324,81 @@ h1, h2, .logo {
 }
 
 .product-image {
+  position: relative;
   height: 160px;
   border-radius: calc(var(--radius) - 4px);
   margin-bottom: 16px;
   background: linear-gradient(135deg, rgba(240, 163, 22, 0.2), rgba(255, 127, 80, 0.2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cup-icon {
+  width: 64px;
+  height: 64px;
+}
+
+.cup-body {
+  fill: rgba(255, 127, 80, 0.16);
+  stroke: var(--color-accent);
+  stroke-width: 3;
+}
+
+.cup-handle {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 3;
+}
+
+.cup-saucer {
+  fill: rgba(75, 74, 74, 0.14);
+}
+
+.cup-steam {
+  fill: none;
+  stroke: var(--color-secondary);
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.6;
+  animation: steam-rise 2.8s ease-in-out infinite;
+}
+
+.cup-steam-2 {
+  animation-delay: 0.4s;
+}
+
+.cup-steam-3 {
+  animation-delay: 0.8s;
+}
+
+@keyframes steam-rise {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-4px); opacity: 0.9; }
+}
+
+.product-description {
+  position: absolute;
+  inset: 0;
+  background: rgba(28, 27, 26, 0.85);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 18px;
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.product-card:hover .product-description,
+.product-card.active .product-description {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .product-card h3 {
