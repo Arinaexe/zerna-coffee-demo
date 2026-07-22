@@ -23,7 +23,7 @@ function animateCount(el) {
   requestAnimationFrame(step);
 }
 
-const revealEls = document.querySelectorAll('.reveal');
+const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
 if (revealEls.length) {
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -43,7 +43,100 @@ if (revealEls.length) {
   revealEls.forEach((el) => revealObserver.observe(el));
 }
 
+// тонкая полоса прогресса прокрутки вверху страницы
+const progressBar = document.querySelector('.scroll-progress');
+if (progressBar) {
+  const updateProgress = () => {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+    progressBar.style.width = pct + '%';
+  };
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+}
+
+// лёгкий параллакс для фоновых фото (шапка, полоса обжарки, фото-шапки страниц)
+const parallaxImgs = document.querySelectorAll('.parallax-img');
+if (parallaxImgs.length) {
+  let ticking = false;
+  const updateParallax = () => {
+    parallaxImgs.forEach((img) => {
+      const rect = img.parentElement.getBoundingClientRect();
+      const center = rect.top + rect.height / 2 - window.innerHeight / 2;
+      const offset = Math.max(-22, Math.min(22, center * 0.1));
+      img.style.transform = `translateY(${offset}px)`;
+    });
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }, { passive: true });
+  updateParallax();
+}
+
+// аккордеон "часто спрашивают"
+document.querySelectorAll('.faq-item').forEach((item) => {
+  const btn = item.querySelector('.faq-q');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const isOpen = item.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+  });
+});
+
+// выпадающий фильтр меню по категориям
+const filterWrap = document.querySelector('.menu-filter');
+if (filterWrap) {
+  const filterBtn = filterWrap.querySelector('.menu-filter-btn');
+  const filterLabel = filterWrap.querySelector('#filterLabel');
+  const filterItems = filterWrap.querySelectorAll('.menu-filter-list li');
+
+  filterBtn.addEventListener('click', () => {
+    const isOpen = filterWrap.classList.toggle('open');
+    filterBtn.setAttribute('aria-expanded', isOpen);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!filterWrap.contains(e.target)) filterWrap.classList.remove('open');
+  });
+
+  filterItems.forEach((li) => {
+    li.addEventListener('click', () => {
+      filterItems.forEach((x) => x.classList.remove('active'));
+      li.classList.add('active');
+      filterLabel.textContent = li.textContent;
+      filterWrap.classList.remove('open');
+      filterBtn.setAttribute('aria-expanded', 'false');
+
+      const filter = li.dataset.filter;
+      document.querySelectorAll('.product-card').forEach((card) => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.classList.toggle('hidden', !match);
+      });
+    });
+  });
+}
+
 // живой статус "открыто/закрыто" — считает по реальному времени и часам работы (8:00-21:00)
+// трекер свежести текущей обжарки — считает от даты обжарки до пика вкуса (2-4 недели)
+const batchMarker = document.getElementById('batchMarker');
+if (batchMarker) {
+  const roastedDaysAgo = 5;
+  const roastDate = new Date();
+  roastDate.setDate(roastDate.getDate() - roastedDaysAgo);
+
+  const dayLabel = document.getElementById('batchDay');
+  const dateLabel = document.getElementById('batchDate');
+  if (dayLabel) dayLabel.textContent = `День свежести — ${roastedDaysAgo}`;
+  if (dateLabel) dateLabel.textContent = roastDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+
+  const pct = Math.min((roastedDaysAgo / 28) * 100, 100);
+  batchMarker.style.left = pct + '%';
+}
+
 function updateStatus() {
   const badge = document.getElementById('statusBadge');
   if (!badge) return;

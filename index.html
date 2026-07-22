@@ -9,6 +9,8 @@
 </head>
 <body>
 
+  <div class="scroll-progress"></div>
+
   <header class="header">
     <a class="logo" href="index.html">Зёрна</a>
     <nav class="nav">
@@ -26,10 +28,14 @@
   </header>
 
   <section class="hero">
-    <span class="hero-eyebrow">Specialty coffee</span>
-    <h1>Зёрна</h1>
-    <p>Кофе, который обжаривают, а не жгут. Своя обжарка каждую неделю, зерно напрямую от фермеров.</p>
-    <a href="#menu" class="hero-cta">Смотреть меню</a>
+    <div class="parallax-wrap"><img class="parallax-img" src="images/hero-cafe.jpg" alt="" /></div>
+    <div class="hero-scrim"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Specialty coffee</span>
+      <h1>Зёрна</h1>
+      <p>Кофе, который обжаривают, а не жгут. Своя обжарка каждую неделю, зерно напрямую от фермеров.</p>
+      <a href="#menu" class="hero-cta">Смотреть меню</a>
+    </div>
   </section>
 
   <section class="stats reveal">
@@ -37,7 +43,44 @@
     <p class="stats-label">чашек кофе сварено сегодня</p>
   </section>
 
-  <section class="features reveal" id="about">
+  <section class="roast-band">
+    <div class="parallax-wrap"><img class="parallax-img" src="images/beans.jpg" alt="Свежеобжаренные зёрна кофе" loading="lazy" /></div>
+    <div class="roast-caption">
+      <span>Обжариваем сами — небольшими партиями, каждую неделю</span>
+    </div>
+  </section>
+
+  <section class="batch reveal">
+    <div class="batch-card">
+      <div class="batch-top">
+        <span class="section-eyebrow">Сейчас в обжарке</span>
+        <span class="batch-day" id="batchDay">День свежести</span>
+      </div>
+      <h3 class="batch-origin">Эфиопия · Гуджи, ферма Естер</h3>
+      <p class="batch-meta">Обработка: мытая · Обжарено: <span id="batchDate">…</span></p>
+      <div class="batch-gauge">
+        <div class="batch-gauge-track">
+          <span class="batch-zone zone-wake"></span>
+          <span class="batch-zone zone-peak"></span>
+          <span class="batch-zone zone-fade"></span>
+          <span class="batch-marker" id="batchMarker"></span>
+        </div>
+        <div class="batch-gauge-labels">
+          <span>просыпается</span>
+          <span>пик вкуса</span>
+          <span>раскрывается тише</span>
+        </div>
+      </div>
+      <div class="flavor-tags">
+        <span>ягоды</span>
+        <span>жасмин</span>
+        <span>чайное тело</span>
+      </div>
+      <a class="batch-link" href="blog-hranenie-zerna.html">Почему это важно — в журнале →</a>
+    </div>
+  </section>
+
+  <section class="features reveal-stagger" id="about">
     <div class="feature">
       <div class="feature-mark">01</div>
       <h3>Своя обжарка</h3>
@@ -60,97 +103,110 @@
       <span class="section-eyebrow">Меню</span>
       <h2>Что попробовать</h2>
       <p class="section-hint">Наведи (или тапни на телефоне) на карточку — покажем описание</p>
+      <div class="menu-filter">
+        <button class="menu-filter-btn" id="filterBtn" aria-expanded="false" aria-haspopup="listbox">
+          <span id="filterLabel">Все напитки</span>
+          <span class="menu-filter-caret"></span>
+        </button>
+        <ul class="menu-filter-list" id="filterList" role="listbox">
+          <li data-filter="all" class="active" role="option">Все напитки</li>
+          <li data-filter="black" role="option">Чёрный кофе</li>
+          <li data-filter="milk" role="option">С молоком</li>
+          <li data-filter="cold" role="option">Холодное</li>
+        </ul>
+      </div>
     </div>
-    <div class="catalog">
-      <div class="product-card">
+    <div class="catalog reveal-stagger">
+      <div class="product-card" data-category="black">
         <div class="product-image">
-          <svg class="cup-icon" viewBox="0 0 100 100" aria-hidden="true">
-            <path class="cup-steam" d="M38 28c-4-6 4-10 0-16" />
-            <path class="cup-steam cup-steam-2" d="M52 28c-4-6 4-10 0-16" />
-            <path class="cup-steam cup-steam-3" d="M65 30c-4-6 4-10 0-16" />
-            <path class="cup-body" d="M22 42h56v18a28 28 0 0 1-56 0z" />
-            <path class="cup-handle" d="M78 48h6a10 10 0 0 1 0 20h-6" />
-            <rect class="cup-saucer" x="14" y="86" width="72" height="6" rx="3" />
-          </svg>
+          <img src="images/espresso.jpg" alt="Эспрессо" loading="lazy" />
           <div class="product-description">Двойная порция, крепкий и плотный вкус</div>
         </div>
         <h3>Эспрессо</h3>
         <p>180 ₽</p>
+        <div class="card-tags"><span>шоколад</span><span>орех</span><span>плотное тело</span></div>
       </div>
-      <div class="product-card">
+      <div class="product-card" data-category="milk">
         <div class="product-image">
-          <svg class="cup-icon" viewBox="0 0 100 100" aria-hidden="true">
-            <path class="cup-steam" d="M38 28c-4-6 4-10 0-16" />
-            <path class="cup-steam cup-steam-2" d="M52 28c-4-6 4-10 0-16" />
-            <path class="cup-steam cup-steam-3" d="M65 30c-4-6 4-10 0-16" />
-            <path class="cup-body" d="M22 42h56v18a28 28 0 0 1-56 0z" />
-            <path class="cup-handle" d="M78 48h6a10 10 0 0 1 0 20h-6" />
-            <rect class="cup-saucer" x="14" y="86" width="72" height="6" rx="3" />
-          </svg>
+          <img src="images/cappuccino.jpg" alt="Капучино" loading="lazy" />
           <div class="product-description">Нежная молочная пенка, мягкий бархатистый вкус</div>
         </div>
         <h3>Капучино</h3>
         <p>250 ₽</p>
+        <div class="card-tags"><span>карамель</span><span>миндаль</span><span>сливочный</span></div>
       </div>
-      <div class="product-card">
+      <div class="product-card" data-category="milk">
         <div class="product-image">
-          <svg class="cup-icon" viewBox="0 0 100 100" aria-hidden="true">
-            <path class="cup-steam" d="M38 28c-4-6 4-10 0-16" />
-            <path class="cup-steam cup-steam-2" d="M52 28c-4-6 4-10 0-16" />
-            <path class="cup-steam cup-steam-3" d="M65 30c-4-6 4-10 0-16" />
-            <path class="cup-body" d="M22 42h56v18a28 28 0 0 1-56 0z" />
-            <path class="cup-handle" d="M78 48h6a10 10 0 0 1 0 20h-6" />
-            <rect class="cup-saucer" x="14" y="86" width="72" height="6" rx="3" />
-          </svg>
+          <img src="images/flat-white.jpg" alt="Флэт уайт" loading="lazy" />
           <div class="product-description">Меньше пенки, больше кофе — для тех, кто ценит эспрессо</div>
         </div>
         <h3>Флэт уайт</h3>
         <p>270 ₽</p>
+        <div class="card-tags"><span>какао</span><span>крем</span><span>мягкая кислотность</span></div>
       </div>
-      <div class="product-card">
+      <div class="product-card" data-category="milk">
         <div class="product-image">
-          <svg class="cup-icon" viewBox="0 0 100 100" aria-hidden="true">
-            <path class="cup-steam" d="M38 28c-4-6 4-10 0-16" />
-            <path class="cup-steam cup-steam-2" d="M52 28c-4-6 4-10 0-16" />
-            <path class="cup-steam cup-steam-3" d="M65 30c-4-6 4-10 0-16" />
-            <path class="cup-body" d="M22 42h56v18a28 28 0 0 1-56 0z" />
-            <path class="cup-handle" d="M78 48h6a10 10 0 0 1 0 20h-6" />
-            <rect class="cup-saucer" x="14" y="86" width="72" height="6" rx="3" />
-          </svg>
+          <img src="images/raf.jpg" alt="Раф на овсяном молоке" loading="lazy" />
           <div class="product-description">Взбитые сливки прямо в чашке — сладко, тепло, уютно</div>
         </div>
         <h3>Раф на овсяном молоке</h3>
         <p>320 ₽</p>
+        <div class="card-tags"><span>ваниль</span><span>тростниковый сахар</span></div>
       </div>
-      <div class="product-card">
+      <div class="product-card" data-category="black">
         <div class="product-image">
-          <svg class="cup-icon" viewBox="0 0 100 100" aria-hidden="true">
-            <path class="cup-steam" d="M38 28c-4-6 4-10 0-16" />
-            <path class="cup-steam cup-steam-2" d="M52 28c-4-6 4-10 0-16" />
-            <path class="cup-steam cup-steam-3" d="M65 30c-4-6 4-10 0-16" />
-            <path class="cup-body" d="M22 42h56v18a28 28 0 0 1-56 0z" />
-            <path class="cup-handle" d="M78 48h6a10 10 0 0 1 0 20h-6" />
-            <rect class="cup-saucer" x="14" y="86" width="72" height="6" rx="3" />
-          </svg>
+          <img src="images/filter-v60.jpg" alt="Фильтр-кофе V60" loading="lazy" />
           <div class="product-description">Чистый вкус зерна, заваривается вручную по каплям</div>
         </div>
         <h3>Фильтр-кофе V60</h3>
         <p>280 ₽</p>
+        <div class="card-tags"><span>ягоды</span><span>жасмин</span><span>чайное тело</span></div>
       </div>
-      <div class="product-card">
+      <div class="product-card" data-category="cold">
         <div class="product-image">
-          <svg class="cup-icon" viewBox="0 0 100 100" aria-hidden="true">
-            <path class="cup-steam" d="M38 28c-4-6 4-10 0-16" />
-            <path class="cup-steam cup-steam-2" d="M52 28c-4-6 4-10 0-16" />
-            <path class="cup-steam cup-steam-3" d="M65 30c-4-6 4-10 0-16" />
-            <path class="cup-body" d="M22 42h56v18a28 28 0 0 1-56 0z" />
-            <path class="cup-handle" d="M78 48h6a10 10 0 0 1 0 20h-6" />
-            <rect class="cup-saucer" x="14" y="86" width="72" height="6" rx="3" />
-          </svg>
+          <img src="images/iced-coffee.jpg" alt="Кофе со льдом" loading="lazy" />
           <div class="product-description">Освежает и бодрит — то, что нужно в жару</div>
         </div>
         <h3>Кофе со льдом</h3>
         <p>260 ₽</p>
+        <div class="card-tags"><span>цитрус</span><span>тростниковый сахар</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq reveal" id="faq">
+    <div class="section-heading">
+      <span class="section-eyebrow">Вопросы</span>
+      <h2>Часто спрашивают</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Можно ли забрать кофе с собой?</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-a"><div><p>Да, у бара есть отдельная касса навынос — не нужно стоять в общей очереди у столиков.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Есть растительное молоко?</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-a"><div><p>Овсяное — в раф и любой напиток на выбор, без доплаты. Миндальное и кокосовое — по запросу у бариста.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Работает ли Wi-Fi и можно ли поработать с ноутбуком?</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-a"><div><p>Да, Wi-Fi бесплатный для гостей, розетки есть у половины столов. В выходные с 12 до 16 в зале обычно людно — если нужна тишина, лучше приходить утром.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Можно ли купить зерно на вынос?</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-a"><div><p>Можно, у бара всегда есть пакеты текущей обжарки на развес. Бариста подскажет, сколько дней зерну и как лучше его заваривать.</p></div></div>
       </div>
     </div>
   </section>
