@@ -23,6 +23,32 @@ function animateCount(el) {
   requestAnimationFrame(step);
 }
 
+// пословное появление текста в заголовках — оборачиваем каждое слово в свой span
+// с нарастающей задержкой, чтобы текст "печатался" плавно, а не всплывал целиком
+function splitIntoWords(el) {
+  const words = el.textContent.trim().split(/\s+/);
+  el.innerHTML = words
+    .map((word, i) => `<span class="word" style="transition-delay:${i * 35}ms">${word}</span>`)
+    .join(' ');
+  el.classList.add('word-reveal');
+}
+
+const wordTargets = document.querySelectorAll('.hero h1, .hero p, .page-header-content h1, .section-heading h2, .story-sticky h2');
+wordTargets.forEach(splitIntoWords);
+
+if (wordTargets.length) {
+  const wordObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        wordObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  wordTargets.forEach((el) => wordObserver.observe(el));
+}
+
 const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
 if (revealEls.length) {
   const revealObserver = new IntersectionObserver((entries) => {

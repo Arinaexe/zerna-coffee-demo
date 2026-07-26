@@ -220,6 +220,32 @@ h1, h2, .logo {
   opacity: 0.55;
 }
 
+/* ---------- 3D-чашка ---------- */
+
+.scene3d {
+  padding: 60px 32px 100px;
+  text-align: center;
+}
+
+.scene3d-canvas {
+  width: 100%;
+  max-width: 480px;
+  height: 420px;
+  margin: 0 auto;
+  cursor: grab;
+  touch-action: none;
+}
+
+.scene3d-canvas:active {
+  cursor: grabbing;
+}
+
+@media (max-width: 640px) {
+  .scene3d-canvas {
+    height: 320px;
+  }
+}
+
 /* ---------- статус "открыто/закрыто" ---------- */
 
 .status-badge {
@@ -711,6 +737,18 @@ h1, h2, .logo {
 .reveal-stagger.visible > *:nth-child(5) { transition-delay: .2s; }
 .reveal-stagger.visible > *:nth-child(6) { transition-delay: .25s; }
 
+.word-reveal .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+.word-reveal.visible .word {
+  opacity: 1;
+  transform: none;
+}
+
 /* ---------- прогресс прокрутки ---------- */
 
 .scroll-progress {
@@ -1004,6 +1042,69 @@ h1, h2, .logo {
 
 .page-content p {
   margin-bottom: 16px;
+}
+
+/* ---------- история (sticky-раскладка) ---------- */
+
+.story {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 56px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 80px 32px 40px;
+}
+
+.story-sticky {
+  align-self: start;
+  position: sticky;
+  top: 110px;
+}
+
+.story-sticky h2 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.story-note {
+  font-size: 13px;
+  color: var(--color-primary);
+  opacity: 0.55;
+  line-height: 1.5;
+}
+
+.story-block {
+  margin-bottom: 64px;
+}
+
+.story-block:last-child {
+  margin-bottom: 0;
+}
+
+.story-year {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 10px;
+}
+
+.story-block p {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+@media (max-width: 780px) {
+  .story {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .story-sticky {
+    position: static;
+  }
 }
 
 /* ---------- команда ---------- */
