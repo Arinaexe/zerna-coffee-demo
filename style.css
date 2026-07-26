@@ -747,6 +747,48 @@ h1, h2, .logo {
   z-index: 200;
 }
 
+/* ---------- декоративные "змейки" по бокам ---------- */
+
+.side-deco {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 60px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.side-deco-left {
+  left: 24px;
+}
+
+.side-deco-right {
+  right: 24px;
+}
+
+.side-deco svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.side-deco path {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.4;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+@media (max-width: 1320px) {
+  .side-deco {
+    display: none;
+  }
+}
+
 /* ---------- фото-шапка внутренних страниц ---------- */
 
 .page-header {
@@ -1143,6 +1185,253 @@ h1, h2, .logo {
   font-size: 14px;
   opacity: 0.7;
   line-height: 1.5;
+}
+
+/* ---------- вакансии ---------- */
+
+.vacancies-section {
+  padding: 88px 48px 100px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.vacancies {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.vacancy-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.vacancy-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lift);
+  border-color: var(--color-accent);
+}
+
+.vacancy-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.vacancy-top h3 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.vacancy-type {
+  font-size: 12px;
+  color: var(--color-primary);
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+.vacancy-salary {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+
+.vacancy-card > p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.vacancy-list {
+  list-style: none;
+  margin-bottom: 14px;
+}
+
+.vacancy-list li {
+  font-size: 14px;
+  line-height: 1.6;
+  padding-left: 16px;
+  position: relative;
+  margin-bottom: 6px;
+  opacity: 0.85;
+}
+
+.vacancy-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+.vacancy-offer {
+  font-size: 13px;
+  opacity: 0.65;
+  font-style: italic;
+  margin-bottom: 20px !important;
+}
+
+.vacancy-apply {
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 10px 22px;
+  background: var(--color-dark);
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.25s ease;
+}
+
+.vacancy-apply:hover {
+  background: var(--color-accent);
+}
+
+/* ---------- наши точки ---------- */
+
+.locations {
+  padding: 40px 48px 100px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.location-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.location-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lift);
+  border-color: var(--color-accent);
+}
+
+.location-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.location-address {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.location-link {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+/* ---------- программа лояльности ---------- */
+
+.loyalty {
+  padding: 40px 32px 100px;
+}
+
+.loyalty-card {
+  max-width: 640px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 48px 40px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+}
+
+.loyalty-stamps {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.stamp {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stamp svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.stamp.filled {
+  background: var(--color-dark);
+  color: #fff;
+}
+
+.stamp.reward {
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+  box-shadow: 0 8px 20px rgba(255, 127, 80, 0.4);
+}
+
+.loyalty-note {
+  font-size: 15px;
+  opacity: 0.75;
+  line-height: 1.6;
+  max-width: 420px;
+  margin: 0 auto 28px;
+}
+
+.loyalty-cta {
+  display: inline-block;
+  padding: 12px 30px;
+  background: var(--color-dark);
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.25s ease;
+}
+
+.loyalty-cta:hover {
+  background: var(--color-accent);
+}
+
+@media (max-width: 640px) {
+  .loyalty-card {
+    padding: 36px 24px;
+  }
+
+  .stamp {
+    width: 44px;
+    height: 44px;
+  }
 }
 
 /* ---------- журнал (блог) ---------- */
