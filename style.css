@@ -16,6 +16,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 *, *::before, *::after {
@@ -32,7 +33,6 @@ body {
   background-attachment: fixed;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 h1, h2, .logo {
@@ -122,6 +122,17 @@ h1, h2, .logo {
   position: absolute;
   inset: 0;
   overflow: hidden;
+}
+
+/* медленное "дыхание" фото в hero — отдельный элемент от .parallax-img,
+   поэтому не конфликтует с transform, который на скролле выставляет JS */
+.hero .parallax-wrap {
+  animation: hero-kenburns 20s ease-in-out infinite;
+}
+
+@keyframes hero-kenburns {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
 }
 
 .parallax-img {
@@ -218,32 +229,6 @@ h1, h2, .logo {
   font-size: 13px;
   color: var(--color-primary);
   opacity: 0.55;
-}
-
-/* ---------- 3D-чашка ---------- */
-
-.scene3d {
-  padding: 60px 32px 100px;
-  text-align: center;
-}
-
-.scene3d-canvas {
-  width: 100%;
-  max-width: 480px;
-  height: 420px;
-  margin: 0 auto;
-  cursor: grab;
-  touch-action: none;
-}
-
-.scene3d-canvas:active {
-  cursor: grabbing;
-}
-
-@media (max-width: 640px) {
-  .scene3d-canvas {
-    height: 320px;
-  }
 }
 
 /* ---------- статус "открыто/закрыто" ---------- */
@@ -741,7 +726,7 @@ h1, h2, .logo {
   display: inline-block;
   opacity: 0;
   transform: translateY(0.5em);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 }
 
 .word-reveal.visible .word {

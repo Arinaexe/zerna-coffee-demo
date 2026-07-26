@@ -28,7 +28,7 @@ function animateCount(el) {
 function splitIntoWords(el) {
   const words = el.textContent.trim().split(/\s+/);
   el.innerHTML = words
-    .map((word, i) => `<span class="word" style="transition-delay:${i * 35}ms">${word}</span>`)
+    .map((word, i) => `<span class="word" style="transition-delay:${i * 70}ms">${word}</span>`)
     .join(' ');
   el.classList.add('word-reveal');
 }
