@@ -1,3 +1,18 @@
+// бегущая строка слева: контент задублирован дважды, чтобы зациклить,
+// но точку склейки надёжнее не гадать через 50%, а измерить по-настоящему —
+// иначе любая мелочь (шрифт ещё не подгрузился, округление) сдвигает петлю и виден скачок
+document.querySelectorAll('.side-marquee').forEach((marquee) => {
+  const setDistance = () => {
+    const distance = marquee.scrollHeight / 2;
+    marquee.style.setProperty('--marquee-distance', distance + 'px');
+  };
+  setDistance();
+  // шрифт может догрузиться позже и чуть изменить высоту текста — пересчитываем, когда это произойдёт
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(setDistance);
+  }
+});
+
 // тень на шапке при скролле + анимация появления секций
 
 const headerEl = document.querySelector('.header');
