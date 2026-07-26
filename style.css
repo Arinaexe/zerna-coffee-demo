@@ -794,45 +794,45 @@ h1, h2, .logo {
   to { transform: translateY(-50%); }
 }
 
-.side-orb {
+.bean-wrap {
   position: absolute;
   left: 50%;
-  border-radius: 50%;
-  filter: blur(40px);
-  opacity: 0.4;
-  animation: orb-float 16s ease-in-out infinite;
-}
-
-.orb-1 {
-  width: 130px;
-  height: 130px;
-  top: 8%;
-  background: var(--color-accent);
   transform: translateX(-50%);
 }
 
-.orb-2 {
-  width: 90px;
-  height: 90px;
-  top: 48%;
-  background: var(--color-secondary);
-  transform: translateX(-50%);
-  animation-delay: -6s;
+.side-bean {
+  display: block;
+  width: 30px;
+  height: auto;
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.34;
+  animation: bean-float 20s ease-in-out infinite;
 }
 
-.orb-3 {
-  width: 70px;
-  height: 70px;
-  top: 82%;
-  background: var(--color-dark);
-  opacity: 0.18;
-  transform: translateX(-50%);
-  animation-delay: -11s;
+.side-bean.small {
+  width: 20px;
+  stroke: var(--color-secondary);
+  opacity: 0.28;
 }
 
-@keyframes orb-float {
-  0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
-  50% { transform: translateX(-50%) translateY(50px) scale(1.2); }
+.bean-wrap:nth-child(2) .side-bean {
+  animation-delay: -5s;
+}
+
+.bean-wrap:nth-child(3) .side-bean {
+  animation-delay: -10s;
+}
+
+.bean-wrap:nth-child(4) .side-bean {
+  animation-delay: -15s;
+}
+
+@keyframes bean-float {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(34px) rotate(14deg); }
 }
 
 @media (max-width: 1320px) {
@@ -843,7 +843,7 @@ h1, h2, .logo {
 
 @media (prefers-reduced-motion: reduce) {
   .side-marquee,
-  .side-orb {
+  .side-bean {
     animation: none;
   }
 }
