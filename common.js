@@ -69,19 +69,13 @@ if (revealEls.length) {
   revealEls.forEach((el) => revealObserver.observe(el));
 }
 
-// тонкая полоса прогресса прокрутки вверху страницы + декоративные "змейки" по бокам,
-// которые дорисовываются той же долей прокрутки (0 до 1)
+// тонкая полоса прогресса прокрутки вверху страницы
 const progressBar = document.querySelector('.scroll-progress');
-const sideDecoPaths = document.querySelectorAll('.side-deco path');
-if (progressBar || sideDecoPaths.length) {
+if (progressBar) {
   const updateProgress = () => {
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const fraction = docHeight > 0 ? window.scrollY / docHeight : 0;
-
-    if (progressBar) progressBar.style.width = fraction * 100 + '%';
-    sideDecoPaths.forEach((path) => {
-      path.style.strokeDashoffset = 1 - fraction;
-    });
+    progressBar.style.width = fraction * 100 + '%';
   };
   window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();

@@ -747,45 +747,104 @@ h1, h2, .logo {
   z-index: 200;
 }
 
-/* ---------- декоративные "змейки" по бокам ---------- */
+/* ---------- декор по бокам: бегущая строка + плавающие цветные пятна ---------- */
 
 .side-deco {
   position: fixed;
   top: 0;
   height: 100vh;
-  width: 60px;
+  width: 90px;
   pointer-events: none;
   z-index: 5;
+  overflow: hidden;
 }
 
 .side-deco-left {
-  left: 24px;
+  left: 12px;
 }
 
 .side-deco-right {
-  right: 24px;
+  right: 12px;
 }
 
-.side-deco svg {
-  display: block;
-  width: 100%;
-  height: 100%;
+.side-marquee {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: marquee-vertical 32s linear infinite;
 }
 
-.side-deco path {
-  fill: none;
-  stroke: var(--color-accent);
-  stroke-width: 2;
-  stroke-linecap: round;
+.side-marquee span {
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-primary);
+  opacity: 0.32;
+  white-space: nowrap;
+  padding: 20px 0;
+}
+
+@keyframes marquee-vertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+.side-orb {
+  position: absolute;
+  left: 50%;
+  border-radius: 50%;
+  filter: blur(40px);
   opacity: 0.4;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  transition: stroke-dashoffset 0.1s linear;
+  animation: orb-float 16s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 130px;
+  height: 130px;
+  top: 8%;
+  background: var(--color-accent);
+  transform: translateX(-50%);
+}
+
+.orb-2 {
+  width: 90px;
+  height: 90px;
+  top: 48%;
+  background: var(--color-secondary);
+  transform: translateX(-50%);
+  animation-delay: -6s;
+}
+
+.orb-3 {
+  width: 70px;
+  height: 70px;
+  top: 82%;
+  background: var(--color-dark);
+  opacity: 0.18;
+  transform: translateX(-50%);
+  animation-delay: -11s;
+}
+
+@keyframes orb-float {
+  0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+  50% { transform: translateX(-50%) translateY(50px) scale(1.2); }
 }
 
 @media (max-width: 1320px) {
   .side-deco {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side-marquee,
+  .side-orb {
+    animation: none;
   }
 }
 
