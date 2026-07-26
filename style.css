@@ -124,15 +124,16 @@ h1, h2, .logo {
   overflow: hidden;
 }
 
-/* медленное "дыхание" фото в hero — отдельный элемент от .parallax-img,
-   поэтому не конфликтует с transform, который на скролле выставляет JS */
-.hero .parallax-wrap {
-  animation: hero-kenburns 20s ease-in-out infinite;
+/* видео стоит поверх постера в DOM — постер служит мгновенной подложкой,
+   пока видео грузится, и остаётся единственным, что видно при reduced motion */
+.hero-video {
+  pointer-events: none;
 }
 
-@keyframes hero-kenburns {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.08); }
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    display: none;
+  }
 }
 
 .parallax-img {

@@ -28,7 +28,17 @@
   </header>
 
   <section class="hero">
-    <div class="parallax-wrap"><img class="parallax-img" src="images/hero-cafe.jpg" alt="" /></div>
+    <div class="parallax-wrap">
+      <img class="parallax-img hero-poster" src="video/hero-pour-poster.jpg" alt="" />
+      <video
+        class="parallax-img hero-video"
+        autoplay muted loop playsinline
+        poster="video/hero-pour-poster.jpg"
+      >
+        <source src="video/hero-pour.webm" type="video/webm">
+        <source src="video/hero-pour.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="hero-scrim"></div>
     <div class="hero-content">
       <span class="hero-eyebrow">Specialty coffee</span>
