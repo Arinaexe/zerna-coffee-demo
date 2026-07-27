@@ -1,6 +1,6 @@
 // бегущая строка слева: один и тот же блок (.marquee-set) повторён 3 раза подряд,
-// а сдвиг задаём ровно высотой ОДНОГО блока, измеренной напрямую — не долей от общей высоты,
-// чтобы не зависеть от округлений. Три копии вместо двух — запас, чтобы даже на высоких экранах
+// а сдвиг задаём ровно высотой ОДНОГО блока, измеренной напрямую - не долей от общей высоты,
+// чтобы не зависеть от округлений. Три копии вместо двух - запас, чтобы даже на высоких экранах
 // в кадре всегда было чем закрыть петлю
 document.querySelectorAll('.side-marquee').forEach((marquee) => {
   const firstSet = marquee.querySelector('.marquee-set');
@@ -13,7 +13,7 @@ document.querySelectorAll('.side-marquee').forEach((marquee) => {
 
   setDistance();
   window.addEventListener('resize', setDistance);
-  // шрифт может догрузиться позже и чуть изменить высоту текста — пересчитываем, когда это случится
+  // шрифт может догрузиться позже и чуть изменить высоту текста - пересчитываем, когда это случится
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(setDistance);
   }
@@ -28,7 +28,7 @@ if (headerEl) {
   });
 }
 
-// анимированный счёт от 0 до целевого числа — запускается один раз, когда блок появляется в кадре
+// анимированный счёт от 0 до целевого числа - запускается один раз, когда блок появляется в кадре
 function animateCount(el) {
   const target = parseInt(el.dataset.target, 10);
   const duration = 1500;
@@ -44,7 +44,7 @@ function animateCount(el) {
   requestAnimationFrame(step);
 }
 
-// пословное появление текста в заголовках — оборачиваем каждое слово в свой span
+// пословное появление текста в заголовках - оборачиваем каждое слово в свой span
 // с нарастающей задержкой, чтобы текст "печатался" плавно, а не всплывал целиком
 function splitIntoWords(el) {
   const words = el.textContent.trim().split(/\s+/);
@@ -167,8 +167,8 @@ if (filterWrap) {
   });
 }
 
-// живой статус "открыто/закрыто" — считает по реальному времени и часам работы (8:00-21:00)
-// трекер свежести текущей обжарки — считает от даты обжарки до пика вкуса (2-4 недели)
+// живой статус "открыто/закрыто" - считает по реальному времени и часам работы (8:00-21:00)
+// трекер свежести текущей обжарки - считает от даты обжарки до пика вкуса (2-4 недели)
 const batchMarker = document.getElementById('batchMarker');
 if (batchMarker) {
   const roastedDaysAgo = 5;
@@ -177,7 +177,7 @@ if (batchMarker) {
 
   const dayLabel = document.getElementById('batchDay');
   const dateLabel = document.getElementById('batchDate');
-  if (dayLabel) dayLabel.textContent = `День свежести — ${roastedDaysAgo}`;
+  if (dayLabel) dayLabel.textContent = `День свежести - ${roastedDaysAgo}`;
   if (dateLabel) dateLabel.textContent = roastDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
 
   const pct = Math.min((roastedDaysAgo / 28) * 100, 100);
@@ -196,7 +196,7 @@ function updateStatus() {
 }
 updateStatus();
 
-// на телефоне нет наведения мышкой — тап по карточке тоже показывает описание
+// на телефоне нет наведения мышкой - тап по карточке тоже показывает описание
 document.querySelectorAll('.product-card').forEach((card) => {
   card.addEventListener('click', () => card.classList.toggle('active'));
 });

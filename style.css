@@ -37,7 +37,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* фон медленно "плывёт" по диагонали — ровно на размер одного тайла (260px),
+/* фон медленно "плывёт" по диагонали - ровно на размер одного тайла (260px),
    поэтому смещение бесшовное: узор не дублируется вручную, просто едет сам тайлинг */
 @keyframes bg-drift {
   from { background-position: 0 0; }
@@ -133,7 +133,7 @@ h1, h2, .logo {
   overflow: hidden;
 }
 
-/* видео стоит поверх постера в DOM — постер служит мгновенной подложкой,
+/* видео стоит поверх постера в DOM - постер служит мгновенной подложкой,
    пока видео грузится, и остаётся единственным, что видно при reduced motion */
 .hero-video {
   pointer-events: none;
@@ -1343,7 +1343,7 @@ h1, h2, .logo {
 }
 
 .vacancy-list li::before {
-  content: '—';
+  content: '-';
   position: absolute;
   left: 0;
   color: var(--color-accent);
