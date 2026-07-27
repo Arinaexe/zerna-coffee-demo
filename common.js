@@ -1,13 +1,19 @@
-// бегущая строка слева: контент задублирован дважды, чтобы зациклить,
-// но точку склейки надёжнее не гадать через 50%, а измерить по-настоящему —
-// иначе любая мелочь (шрифт ещё не подгрузился, округление) сдвигает петлю и виден скачок
+// бегущая строка слева: один и тот же блок (.marquee-set) повторён 3 раза подряд,
+// а сдвиг задаём ровно высотой ОДНОГО блока, измеренной напрямую — не долей от общей высоты,
+// чтобы не зависеть от округлений. Три копии вместо двух — запас, чтобы даже на высоких экранах
+// в кадре всегда было чем закрыть петлю
 document.querySelectorAll('.side-marquee').forEach((marquee) => {
+  const firstSet = marquee.querySelector('.marquee-set');
+  if (!firstSet) return;
+
   const setDistance = () => {
-    const distance = marquee.scrollHeight / 2;
-    marquee.style.setProperty('--marquee-distance', distance + 'px');
+    const distance = firstSet.getBoundingClientRect().height;
+    if (distance > 0) marquee.style.setProperty('--marquee-distance', distance + 'px');
   };
+
   setDistance();
-  // шрифт может догрузиться позже и чуть изменить высоту текста — пересчитываем, когда это произойдёт
+  window.addEventListener('resize', setDistance);
+  // шрифт может догрузиться позже и чуть изменить высоту текста — пересчитываем, когда это случится
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(setDistance);
   }
