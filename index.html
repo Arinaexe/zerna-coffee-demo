@@ -147,528 +147,603 @@
     <div class="section-heading reveal">
       <span class="section-eyebrow">Меню</span>
       <h2>Что попробовать</h2>
-      <p class="section-hint">Наведи (или тапни на телефоне) на карточку - покажем описание</p>
-      <div class="menu-filter">
-        <button class="menu-filter-btn" id="filterBtn" aria-expanded="false" aria-haspopup="listbox">
-          <span id="filterLabel">Всё меню</span>
-          <span class="menu-filter-caret"></span>
-        </button>
-        <ul class="menu-filter-list" id="filterList" role="listbox">
-          <li data-filter="all" class="active" role="option">Всё меню</li>
-          <li data-filter="black" role="option">Чёрный кофе</li>
-          <li data-filter="milk" role="option">С молоком</li>
-          <li data-filter="cold" role="option">Холодное</li>
-          <li data-filter="tea" role="option">Чай</li>
-          <li data-filter="drinks" role="option">Другие напитки</li>
-          <li data-filter="dessert" role="option">Десерты</li>
-          <li data-filter="food" role="option">Еда</li>
-        </ul>
-      </div>
+      <p class="section-hint">Выбери категорию, чтобы открыть список - наведи (или тапни на телефоне) на карточку, покажем описание</p>
     </div>
-    <div class="catalog reveal-stagger">
-      <div class="product-card" data-category="black">
-        <div class="product-image">
-          <img src="images/espresso.jpg" alt="Эспрессо" loading="lazy" />
-          <div class="product-description">Двойная порция, крепкий и плотный вкус</div>
+    <div class="menu-categories">
+      <div class="menu-cat-item" data-cat="black">
+        <button class="menu-cat-header" aria-expanded="false">
+          <span class="menu-cat-name">Чёрный кофе</span>
+          <span class="menu-cat-count">5</span>
+          <span class="menu-cat-icon"></span>
+        </button>
+        <div class="menu-cat-body">
+          <div>
+          <div class="catalog">
+            <div class="product-card" data-category="black">
+            <div class="product-image">
+            <img src="images/espresso.jpg" alt="Эспрессо" loading="lazy" />
+            <div class="product-description">Двойная порция, крепкий и плотный вкус</div>
+            </div>
+            <h3>Эспрессо</h3>
+            <p>180 ₽</p>
+            <div class="card-tags"><span>шоколад</span><span>орех</span><span>плотное тело</span></div>
+            </div>
+            <div class="product-card" data-category="black">
+            <div class="product-image">
+            <img src="images/filter-v60.jpg" alt="Фильтр-кофе V60" loading="lazy" />
+            <div class="product-description">Чистый вкус зерна, заваривается вручную по каплям</div>
+            </div>
+            <h3>Фильтр-кофе V60</h3>
+            <p>280 ₽</p>
+            <div class="card-tags"><span>ягоды</span><span>жасмин</span><span>чайное тело</span></div>
+            </div>
+            <div class="product-card" data-category="black">
+            <div class="product-image">
+            <img src="images/americano.jpg" alt="Американо" loading="lazy" />
+            <div class="product-description">Эспрессо, разбавленный горячей водой - мягче и легче на вкус</div>
+            </div>
+            <h3>Американо</h3>
+            <p>190 ₽</p>
+            <div class="card-tags"><span>цитрус</span><span>лёгкое тело</span></div>
+            </div>
+            <div class="product-card" data-category="black">
+            <div class="product-image">
+            <img src="images/ristretto.jpg" alt="Ристретто" loading="lazy" />
+            <div class="product-description">Короткая экстракция - самый концентрированный и сладкий эспрессо</div>
+            </div>
+            <h3>Ристретто</h3>
+            <p>170 ₽</p>
+            <div class="card-tags"><span>карамель</span><span>плотный</span></div>
+            </div>
+            <div class="product-card" data-category="black">
+            <div class="product-image">
+            <img src="images/turkish-coffee.jpg" alt="Кофе по-турецки" loading="lazy" />
+            <div class="product-description">Сваренный в турке на песке - густой, с плотной пенкой сверху</div>
+            </div>
+            <h3>Кофе по-турецки</h3>
+            <p>230 ₽</p>
+            <div class="card-tags"><span>пряности</span><span>густой</span></div>
+            </div>
+          </div>
+          </div>
         </div>
-        <h3>Эспрессо</h3>
-        <p>180 ₽</p>
-        <div class="card-tags"><span>шоколад</span><span>орех</span><span>плотное тело</span></div>
       </div>
-      <div class="product-card" data-category="milk">
-        <div class="product-image">
-          <img src="images/cappuccino.jpg" alt="Капучино" loading="lazy" />
-          <div class="product-description">Нежная молочная пенка, мягкий бархатистый вкус</div>
+      <div class="menu-cat-item" data-cat="milk">
+        <button class="menu-cat-header" aria-expanded="false">
+          <span class="menu-cat-name">С молоком</span>
+          <span class="menu-cat-count">6</span>
+          <span class="menu-cat-icon"></span>
+        </button>
+        <div class="menu-cat-body">
+          <div>
+          <div class="catalog">
+            <div class="product-card" data-category="milk">
+            <div class="product-image">
+            <img src="images/cappuccino.jpg" alt="Капучино" loading="lazy" />
+            <div class="product-description">Нежная молочная пенка, мягкий бархатистый вкус</div>
+            </div>
+            <h3>Капучино</h3>
+            <p>250 ₽</p>
+            <div class="card-tags"><span>карамель</span><span>миндаль</span><span>сливочный</span></div>
+            </div>
+            <div class="product-card" data-category="milk">
+            <div class="product-image">
+            <img src="images/flat-white.jpg" alt="Флэт уайт" loading="lazy" />
+            <div class="product-description">Меньше пенки, больше кофе - для тех, кто ценит эспрессо</div>
+            </div>
+            <h3>Флэт уайт</h3>
+            <p>270 ₽</p>
+            <div class="card-tags"><span>какао</span><span>крем</span><span>мягкая кислотность</span></div>
+            </div>
+            <div class="product-card" data-category="milk">
+            <div class="product-image">
+            <img src="images/raf.jpg" alt="Раф на овсяном молоке" loading="lazy" />
+            <div class="product-description">Взбитые сливки прямо в чашке - сладко, тепло, уютно</div>
+            </div>
+            <h3>Раф на овсяном молоке</h3>
+            <p>320 ₽</p>
+            <div class="card-tags"><span>ваниль</span><span>тростниковый сахар</span></div>
+            </div>
+            <div class="product-card" data-category="milk">
+            <div class="product-image">
+            <img src="images/latte.jpg" alt="Латте" loading="lazy" />
+            <div class="product-description">Много молока, лёгкая пенка - самый мягкий молочный кофе</div>
+            </div>
+            <h3>Латте</h3>
+            <p>280 ₽</p>
+            <div class="card-tags"><span>молочный</span><span>ваниль</span></div>
+            </div>
+            <div class="product-card" data-category="milk">
+            <div class="product-image">
+            <img src="images/mocha.jpg" alt="Мокко" loading="lazy" />
+            <div class="product-description">Эспрессо, шоколад и молоко - кофе для тех, кто любит десерт в чашке</div>
+            </div>
+            <h3>Мокко</h3>
+            <p>300 ₽</p>
+            <div class="card-tags"><span>шоколад</span><span>сливки</span></div>
+            </div>
+            <div class="product-card" data-category="milk">
+            <div class="product-image">
+            <img src="images/cortado.jpg" alt="Кортадо" loading="lazy" />
+            <div class="product-description">Эспрессо и тёплое молоко в равных частях - баланс крепости и мягкости</div>
+            </div>
+            <h3>Кортадо</h3>
+            <p>250 ₽</p>
+            <div class="card-tags"><span>сбалансированный</span><span>ореховый</span></div>
+            </div>
+          </div>
+          </div>
         </div>
-        <h3>Капучино</h3>
-        <p>250 ₽</p>
-        <div class="card-tags"><span>карамель</span><span>миндаль</span><span>сливочный</span></div>
       </div>
-      <div class="product-card" data-category="milk">
-        <div class="product-image">
-          <img src="images/flat-white.jpg" alt="Флэт уайт" loading="lazy" />
-          <div class="product-description">Меньше пенки, больше кофе - для тех, кто ценит эспрессо</div>
+      <div class="menu-cat-item" data-cat="cold">
+        <button class="menu-cat-header" aria-expanded="false">
+          <span class="menu-cat-name">Холодное</span>
+          <span class="menu-cat-count">4</span>
+          <span class="menu-cat-icon"></span>
+        </button>
+        <div class="menu-cat-body">
+          <div>
+          <div class="catalog">
+            <div class="product-card" data-category="cold">
+            <div class="product-image">
+            <img src="images/iced-coffee.jpg" alt="Кофе со льдом" loading="lazy" />
+            <div class="product-description">Освежает и бодрит - то, что нужно в жару</div>
+            </div>
+            <h3>Кофе со льдом</h3>
+            <p>260 ₽</p>
+            <div class="card-tags"><span>цитрус</span><span>тростниковый сахар</span></div>
+            </div>
+            <div class="product-card" data-category="cold">
+            <div class="product-image">
+            <img src="images/glace-coffee.jpg" alt="Гляссе" loading="lazy" />
+            <div class="product-description">Холодный кофе с шариком мороженого - десерт и бодрость в одном стакане</div>
+            </div>
+            <h3>Гляссе</h3>
+            <p>290 ₽</p>
+            <div class="card-tags"><span>сливочный</span><span>холодный</span></div>
+            </div>
+            <div class="product-card" data-category="cold">
+            <div class="product-image">
+            <img src="images/iced-latte.jpg" alt="Айс латте" loading="lazy" />
+            <div class="product-description">Латте со льдом - лёгкий и освежающий молочный кофе</div>
+            </div>
+            <h3>Айс латте</h3>
+            <p>280 ₽</p>
+            <div class="card-tags"><span>молочный</span><span>освежает</span></div>
+            </div>
+            <div class="product-card" data-category="cold">
+            <div class="product-image">
+            <img src="images/frappe.jpg" alt="Фраппе" loading="lazy" />
+            <div class="product-description">Взбитый холодный кофе с пышной пенкой - родом из Греции</div>
+            </div>
+            <h3>Фраппе</h3>
+            <p>270 ₽</p>
+            <div class="card-tags"><span>пенка</span><span>бодрящий</span></div>
+            </div>
+          </div>
+          </div>
         </div>
-        <h3>Флэт уайт</h3>
-        <p>270 ₽</p>
-        <div class="card-tags"><span>какао</span><span>крем</span><span>мягкая кислотность</span></div>
       </div>
-      <div class="product-card" data-category="milk">
-        <div class="product-image">
-          <img src="images/raf.jpg" alt="Раф на овсяном молоке" loading="lazy" />
-          <div class="product-description">Взбитые сливки прямо в чашке - сладко, тепло, уютно</div>
+      <div class="menu-cat-item" data-cat="tea">
+        <button class="menu-cat-header" aria-expanded="false">
+          <span class="menu-cat-name">Чай</span>
+          <span class="menu-cat-count">8</span>
+          <span class="menu-cat-icon"></span>
+        </button>
+        <div class="menu-cat-body">
+          <div>
+          <div class="catalog">
+            <div class="product-card" data-category="tea">
+            <div class="product-image">
+            <img src="images/black-tea.jpg" alt="Чёрный чай листовой" loading="lazy" />
+            <div class="product-description">Классический крепкий чай, завариваем в чайнике на двоих</div>
+            </div>
+            <h3>Чёрный чай листовой</h3>
+            <p>160 ₽</p>
+            <div class="card-tags"><span>терпкий</span><span>бергамот</span></div>
+            </div>
+            <div class="product-card" data-category="tea">
+            <div class="product-image">
+            <img src="images/sencha-tea.jpg" alt="Зелёный чай сенча" loading="lazy" />
+            <div class="product-description">Свежий и травянистый - японская классика</div>
+            </div>
+            <h3>Зелёный чай сенча</h3>
+            <p>170 ₽</p>
+            <div class="card-tags"><span>травяной</span><span>свежий</span></div>
+            </div>
+            <div class="product-card" data-category="tea">
+            <div class="product-image">
+            <img src="images/masala-chai.jpg" alt="Чай масала" loading="lazy" />
+            <div class="product-description">Чёрный чай со специями и молоком - согревает в любую погоду</div>
+            </div>
+            <h3>Чай масала</h3>
+            <p>200 ₽</p>
+            <div class="card-tags"><span>корица</span><span>кардамон</span></div>
+            </div>
+            <div class="product-card" data-category="tea">
+            <div class="product-image">
+            <img src="images/hibiscus-tea.jpg" alt="Чай каркаде" loading="lazy" />
+            <div class="product-description">Кисловатый ярко-красный чай из лепестков гибискуса</div>
+            </div>
+            <h3>Чай каркаде</h3>
+            <p>180 ₽</p>
+            <div class="card-tags"><span>кислинка</span><span>ягодный</span></div>
+            </div>
+            <div class="product-card" data-category="tea">
+            <div class="product-image">
+            <img src="images/matcha-latte.jpg" alt="Матча латте" loading="lazy" />
+            <div class="product-description">Японский зелёный чай матча, взбитый с молоком</div>
+            </div>
+            <h3>Матча латте</h3>
+            <p>290 ₽</p>
+            <div class="card-tags"><span>сливочный</span><span>травяной</span></div>
+            </div>
+            <div class="product-card" data-category="tea">
+            <div class="product-image">
+            <img src="images/ivan-tea.jpg" alt="Иван-чай" loading="lazy" />
+            <div class="product-description">Ферментированный кипрей - мягкий вкус без кофеина</div>
+            </div>
+            <h3>Иван-чай</h3>
+            <p>170 ₽</p>
+            <div class="card-tags"><span>медовый</span><span>травяной</span></div>
+            </div>
+            <div class="product-card" data-category="tea">
+            <div class="product-image">
+            <img src="images/mint-tea.jpg" alt="Чай с чабрецом и мятой" loading="lazy" />
+            <div class="product-description">Травяной сбор для вечера - без кофеина, с лёгкой мятной свежестью</div>
+            </div>
+            <h3>Чай с чабрецом и мятой</h3>
+            <p>180 ₽</p>
+            <div class="card-tags"><span>мята</span><span>травы</span></div>
+            </div>
+            <div class="product-card" data-category="tea">
+            <div class="product-image">
+            <img src="images/seabuckthorn-tea.jpg" alt="Облепиховый чай" loading="lazy" />
+            <div class="product-description">Чёрный чай с облепихой и мёдом - согревающий и витаминный</div>
+            </div>
+            <h3>Облепиховый чай</h3>
+            <p>200 ₽</p>
+            <div class="card-tags"><span>облепиха</span><span>мёд</span></div>
+            </div>
+          </div>
+          </div>
         </div>
-        <h3>Раф на овсяном молоке</h3>
-        <p>320 ₽</p>
-        <div class="card-tags"><span>ваниль</span><span>тростниковый сахар</span></div>
       </div>
-      <div class="product-card" data-category="black">
-        <div class="product-image">
-          <img src="images/filter-v60.jpg" alt="Фильтр-кофе V60" loading="lazy" />
-          <div class="product-description">Чистый вкус зерна, заваривается вручную по каплям</div>
+      <div class="menu-cat-item" data-cat="drinks">
+        <button class="menu-cat-header" aria-expanded="false">
+          <span class="menu-cat-name">Другие напитки</span>
+          <span class="menu-cat-count">9</span>
+          <span class="menu-cat-icon"></span>
+        </button>
+        <div class="menu-cat-body">
+          <div>
+          <div class="catalog">
+            <div class="product-card" data-category="drinks">
+            <div class="product-image">
+            <img src="images/cocoa.jpg" alt="Какао классическое" loading="lazy" />
+            <div class="product-description">Горячее какао на молоке - вкус из детства</div>
+            </div>
+            <h3>Какао классическое</h3>
+            <p>220 ₽</p>
+            <div class="card-tags"><span>шоколад</span><span>молочный</span></div>
+            </div>
+            <div class="product-card" data-category="drinks">
+            <div class="product-image">
+            <img src="images/hot-chocolate.jpg" alt="Горячий шоколад" loading="lazy" />
+            <div class="product-description">Густой растопленный шоколад с молоком - почти как десерт</div>
+            </div>
+            <h3>Горячий шоколад</h3>
+            <p>280 ₽</p>
+            <div class="card-tags"><span>густой</span><span>шоколад</span></div>
+            </div>
+            <div class="product-card" data-category="drinks">
+            <div class="product-image">
+            <img src="images/berry-smoothie.jpg" alt="Смузи ягодный" loading="lazy" />
+            <div class="product-description">Клубника, малина и йогурт - густой и освежающий</div>
+            </div>
+            <h3>Смузи ягодный</h3>
+            <p>270 ₽</p>
+            <div class="card-tags"><span>ягоды</span><span>освежает</span></div>
+            </div>
+            <div class="product-card" data-category="drinks">
+            <div class="product-image">
+            <img src="images/mango-smoothie.jpg" alt="Смузи манго-банан" loading="lazy" />
+            <div class="product-description">Тропический дуэт манго и банана</div>
+            </div>
+            <h3>Смузи манго-банан</h3>
+            <p>270 ₽</p>
+            <div class="card-tags"><span>манго</span><span>банан</span></div>
+            </div>
+            <div class="product-card" data-category="drinks">
+            <div class="product-image">
+            <img src="images/ginger-lemonade.jpg" alt="Лимонад имбирный" loading="lazy" />
+            <div class="product-description">Домашний лимонад с имбирём и лаймом - бодрит не хуже кофе</div>
+            </div>
+            <h3>Лимонад имбирный</h3>
+            <p>240 ₽</p>
+            <div class="card-tags"><span>имбирь</span><span>лайм</span></div>
+            </div>
+            <div class="product-card" data-category="drinks">
+            <div class="product-image">
+            <img src="images/strawberry-lemonade.jpg" alt="Лимонад клубника-базилик" loading="lazy" />
+            <div class="product-description">Клубника и базилик - неожиданное освежающее сочетание</div>
+            </div>
+            <h3>Лимонад клубника-базилик</h3>
+            <p>250 ₽</p>
+            <div class="card-tags"><span>клубника</span><span>базилик</span></div>
+            </div>
+            <div class="product-card" data-category="drinks">
+            <div class="product-image">
+            <img src="images/orange-juice.jpg" alt="Апельсиновый фреш" loading="lazy" />
+            <div class="product-description">Свежевыжатый апельсиновый сок - готовим при заказе</div>
+            </div>
+            <h3>Апельсиновый фреш</h3>
+            <p>260 ₽</p>
+            <div class="card-tags"><span>цитрус</span><span>витамин C</span></div>
+            </div>
+            <div class="product-card" data-category="drinks">
+            <div class="product-image">
+            <img src="images/cranberry-drink.jpg" alt="Морс клюквенный" loading="lazy" />
+            <div class="product-description">Домашний морс из клюквы - кисло-сладкий и освежающий</div>
+            </div>
+            <h3>Морс клюквенный</h3>
+            <p>190 ₽</p>
+            <div class="card-tags"><span>клюква</span><span>кислинка</span></div>
+            </div>
+            <div class="product-card" data-category="drinks">
+            <div class="product-image">
+            <img src="images/vanilla-milkshake.jpg" alt="Молочный коктейль ванильный" loading="lazy" />
+            <div class="product-description">Густой ванильный милкшейк со взбитыми сливками</div>
+            </div>
+            <h3>Молочный коктейль ванильный</h3>
+            <p>260 ₽</p>
+            <div class="card-tags"><span>ваниль</span><span>сливки</span></div>
+            </div>
+          </div>
+          </div>
         </div>
-        <h3>Фильтр-кофе V60</h3>
-        <p>280 ₽</p>
-        <div class="card-tags"><span>ягоды</span><span>жасмин</span><span>чайное тело</span></div>
       </div>
-      <div class="product-card" data-category="cold">
-        <div class="product-image">
-          <img src="images/iced-coffee.jpg" alt="Кофе со льдом" loading="lazy" />
-          <div class="product-description">Освежает и бодрит - то, что нужно в жару</div>
+      <div class="menu-cat-item" data-cat="dessert">
+        <button class="menu-cat-header" aria-expanded="false">
+          <span class="menu-cat-name">Десерты</span>
+          <span class="menu-cat-count">14</span>
+          <span class="menu-cat-icon"></span>
+        </button>
+        <div class="menu-cat-body">
+          <div>
+          <div class="catalog">
+            <div class="product-card" data-category="dessert">
+            <div class="product-image">
+            <img src="images/nyc-cheesecake.jpg" alt="Чизкейк Нью-Йорк" loading="lazy" />
+            <div class="product-description">Классический сливочный чизкейк на песочной основе</div>
+            </div>
+            <h3>Чизкейк Нью-Йорк</h3>
+            <p>320 ₽</p>
+            <div class="card-tags"><span>сливочный</span><span>песочная основа</span></div>
+            </div>
+            <div class="product-card" data-category="dessert">
+            <div class="product-image">
+            <img src="images/basque-cheesecake.jpg" alt="Чизкейк Баскский" loading="lazy" />
+            <div class="product-description">Обожжённый снаружи, нежный внутри - без основы</div>
+            </div>
+            <h3>Чизкейк Баскский</h3>
+            <p>330 ₽</p>
+            <div class="card-tags"><span>карамелизация</span><span>нежный</span></div>
+            </div>
+            <div class="product-card" data-category="dessert">
+            <div class="product-image">
+            <img src="images/tiramisu.jpg" alt="Тирамису" loading="lazy" />
+            <div class="product-description">Маскарпоне, кофе и какао - итальянская классика</div>
+            </div>
+            <h3>Тирамису</h3>
+            <p>340 ₽</p>
+            <div class="card-tags"><span>маскарпоне</span><span>кофе</span></div>
+            </div>
+            <div class="product-card" data-category="dessert">
+            <div class="product-image">
+            <img src="images/medovik.jpg" alt="Медовик" loading="lazy" />
+            <div class="product-description">Медовые коржи и сметанный крем - домашний рецепт</div>
+            </div>
+            <h3>Медовик</h3>
+            <p>280 ₽</p>
+            <div class="card-tags"><span>мёд</span><span>сметана</span></div>
+            </div>
+            <div class="product-card" data-category="dessert">
+            <div class="product-image">
+            <img src="images/napoleon-cake.jpg" alt="Наполеон" loading="lazy" />
+            <div class="product-description">Слоёное тесто и заварной крем - хрустящая классика</div>
+            </div>
+            <h3>Наполеон</h3>
+            <p>290 ₽</p>
+            <div class="card-tags"><span>слоёный</span><span>заварной крем</span></div>
+            </div>
+            <div class="product-card" data-category="dessert">
+            <div class="product-image">
+            <img src="images/carrot-cake.jpg" alt="Морковный торт" loading="lazy" />
+            <div class="product-description">Морковь, орехи и крем-чиз - влажный и пряный</div>
+            </div>
+            <h3>Морковный торт</h3>
+            <p>300 ₽</p>
+            <div class="card-tags"><span>морковь</span><span>крем-чиз</span></div>
+            </div>
+            <div class="product-card" data-category="dessert">
+            <div class="product-image">
+            <img src="images/brownie.jpg" alt="Брауни шоколадный" loading="lazy" />
+            <div class="product-description">Плотный шоколадный брауни с орехами</div>
+            </div>
+            <h3>Брауни шоколадный</h3>
+            <p>260 ₽</p>
+            <div class="card-tags"><span>шоколад</span><span>орех</span></div>
+            </div>
+            <div class="product-card" data-category="dessert">
+            <div class="product-image">
+            <img src="images/panna-cotta.jpg" alt="Панна-котта" loading="lazy" />
+            <div class="product-description">Нежные сливки с ягодным соусом</div>
+            </div>
+            <h3>Панна-котта</h3>
+            <p>270 ₽</p>
+            <div class="card-tags"><span>сливки</span><span>ягодный соус</span></div>
+            </div>
+            <div class="product-card" data-category="dessert">
+            <div class="product-image">
+            <img src="images/eclair.jpg" alt="Эклер заварной" loading="lazy" />
+            <div class="product-description">Заварное тесто и крем внутри - французская классика</div>
+            </div>
+            <h3>Эклер заварной</h3>
+            <p>200 ₽</p>
+            <div class="card-tags"><span>заварной крем</span><span>шоколад</span></div>
+            </div>
+            <div class="product-card" data-category="dessert">
+            <div class="product-image">
+            <img src="images/almond-croissant.jpg" alt="Круассан миндальный" loading="lazy" />
+            <div class="product-description">Слоёный круассан с миндальным кремом и лепестками</div>
+            </div>
+            <h3>Круассан миндальный</h3>
+            <p>260 ₽</p>
+            <div class="card-tags"><span>миндаль</span><span>слоёный</span></div>
+            </div>
+            <div class="product-card" data-category="dessert">
+            <div class="product-image">
+            <img src="images/blueberry-muffin.jpg" alt="Маффин черничный" loading="lazy" />
+            <div class="product-description">Влажный маффин с целыми ягодами черники</div>
+            </div>
+            <h3>Маффин черничный</h3>
+            <p>220 ₽</p>
+            <div class="card-tags"><span>черника</span><span>ванильный</span></div>
+            </div>
+            <div class="product-card" data-category="dessert">
+            <div class="product-image">
+            <img src="images/cinnamon-roll.jpg" alt="Синнабон" loading="lazy" />
+            <div class="product-description">Булочка с корицей и кремовой глазурью</div>
+            </div>
+            <h3>Синнабон</h3>
+            <p>250 ₽</p>
+            <div class="card-tags"><span>корица</span><span>глазурь</span></div>
+            </div>
+            <div class="product-card" data-category="dessert">
+            <div class="product-image">
+            <img src="images/churros.jpg" alt="Чурро с шоколадным соусом" loading="lazy" />
+            <div class="product-description">Хрустящие палочки из заварного теста в сахаре</div>
+            </div>
+            <h3>Чурро с шоколадным соусом</h3>
+            <p>230 ₽</p>
+            <div class="card-tags"><span>корица</span><span>шоколадный соус</span></div>
+            </div>
+            <div class="product-card" data-category="dessert">
+            <div class="product-image">
+            <img src="images/macarons.jpg" alt="Макарон ассорти" loading="lazy" />
+            <div class="product-description">Три вкуса миндального печенья с начинкой</div>
+            </div>
+            <h3>Макарон ассорти</h3>
+            <p>270 ₽</p>
+            <div class="card-tags"><span>миндаль</span><span>разные вкусы</span></div>
+            </div>
+          </div>
+          </div>
         </div>
-        <h3>Кофе со льдом</h3>
-        <p>260 ₽</p>
-        <div class="card-tags"><span>цитрус</span><span>тростниковый сахар</span></div>
       </div>
-      <div class="product-card" data-category="black">
-        <div class="product-image">
-          <img src="images/americano.jpg" alt="Американо" loading="lazy" />
-          <div class="product-description">Эспрессо, разбавленный горячей водой - мягче и легче на вкус</div>
+      <div class="menu-cat-item" data-cat="food">
+        <button class="menu-cat-header" aria-expanded="false">
+          <span class="menu-cat-name">Еда</span>
+          <span class="menu-cat-count">10</span>
+          <span class="menu-cat-icon"></span>
+        </button>
+        <div class="menu-cat-body">
+          <div>
+          <div class="catalog">
+            <div class="product-card" data-category="food">
+            <div class="product-image">
+            <img src="images/butter-croissant.jpg" alt="Круассан классический" loading="lazy" />
+            <div class="product-description">Слоёный масляный круассан - выпекаем каждое утро</div>
+            </div>
+            <h3>Круассан классический</h3>
+            <p>190 ₽</p>
+            <div class="card-tags"><span>сливочное масло</span><span>хрустящий</span></div>
+            </div>
+            <div class="product-card" data-category="food">
+            <div class="product-image">
+            <img src="images/chicken-avocado-sandwich.jpg" alt="Сэндвич с курицей и авокадо" loading="lazy" />
+            <div class="product-description">Куриная грудка, авокадо и соус на цельнозерновом хлебе</div>
+            </div>
+            <h3>Сэндвич с курицей и авокадо</h3>
+            <p>330 ₽</p>
+            <div class="card-tags"><span>курица</span><span>авокадо</span></div>
+            </div>
+            <div class="product-card" data-category="food">
+            <div class="product-image">
+            <img src="images/club-sandwich.jpg" alt="Сэндвич клаб" loading="lazy" />
+            <div class="product-description">Классика с курицей, беконом и овощами в три слоя</div>
+            </div>
+            <h3>Сэндвич клаб</h3>
+            <p>350 ₽</p>
+            <div class="card-tags"><span>бекон</span><span>курица</span></div>
+            </div>
+            <div class="product-card" data-category="food">
+            <div class="product-image">
+            <img src="images/avocado-toast.jpg" alt="Тост с авокадо и яйцом" loading="lazy" />
+            <div class="product-description">Тост на закваске, авокадо-крем и яйцо пашот</div>
+            </div>
+            <h3>Тост с авокадо и яйцом</h3>
+            <p>360 ₽</p>
+            <div class="card-tags"><span>авокадо</span><span>яйцо пашот</span></div>
+            </div>
+            <div class="product-card" data-category="food">
+            <div class="product-image">
+            <img src="images/granola-bowl.jpg" alt="Гранола с йогуртом и ягодами" loading="lazy" />
+            <div class="product-description">Домашняя гранола, греческий йогурт и свежие ягоды</div>
+            </div>
+            <h3>Гранола с йогуртом и ягодами</h3>
+            <p>290 ₽</p>
+            <div class="card-tags"><span>йогурт</span><span>ягоды</span></div>
+            </div>
+            <div class="product-card" data-category="food">
+            <div class="product-image">
+            <img src="images/vegetable-omelette.jpg" alt="Омлет с овощами" loading="lazy" />
+            <div class="product-description">Пышный омлет с сезонными овощами и зеленью</div>
+            </div>
+            <h3>Омлет с овощами</h3>
+            <p>310 ₽</p>
+            <div class="card-tags"><span>овощи</span><span>сытный</span></div>
+            </div>
+            <div class="product-card" data-category="food">
+            <div class="product-image">
+            <img src="images/spinach-quiche.jpg" alt="Киш со шпинатом" loading="lazy" />
+            <div class="product-description">Открытый пирог с заварным кремом, шпинатом и сыром</div>
+            </div>
+            <h3>Киш со шпинатом</h3>
+            <p>300 ₽</p>
+            <div class="card-tags"><span>шпинат</span><span>сыр</span></div>
+            </div>
+            <div class="product-card" data-category="food">
+            <div class="product-image">
+            <img src="images/panini.jpg" alt="Панини с ветчиной и сыром" loading="lazy" />
+            <div class="product-description">Прижаренный панини с ветчиной, сыром и томатом</div>
+            </div>
+            <h3>Панини с ветчиной и сыром</h3>
+            <p>310 ₽</p>
+            <div class="card-tags"><span>ветчина</span><span>сыр</span></div>
+            </div>
+            <div class="product-card" data-category="food">
+            <div class="product-image">
+            <img src="images/caesar-salad.jpg" alt="Салат Цезарь с курицей" loading="lazy" />
+            <div class="product-description">Хрустящий салат, курица гриль, соус и пармезан</div>
+            </div>
+            <h3>Салат Цезарь с курицей</h3>
+            <p>340 ₽</p>
+            <div class="card-tags"><span>курица гриль</span><span>пармезан</span></div>
+            </div>
+            <div class="product-card" data-category="food">
+            <div class="product-image">
+            <img src="images/oatmeal-bowl.jpg" alt="Овсяная каша на миндальном молоке" loading="lazy" />
+            <div class="product-description">Овсянка с ягодами, орехами и мёдом - сытный завтрак</div>
+            </div>
+            <h3>Овсяная каша на миндальном молоке</h3>
+            <p>250 ₽</p>
+            <div class="card-tags"><span>ягоды</span><span>мёд</span></div>
+            </div>
+          </div>
+          </div>
         </div>
-        <h3>Американо</h3>
-        <p>190 ₽</p>
-        <div class="card-tags"><span>цитрус</span><span>лёгкое тело</span></div>
-      </div>
-      <div class="product-card" data-category="black">
-        <div class="product-image">
-          <img src="images/ristretto.jpg" alt="Ристретто" loading="lazy" />
-          <div class="product-description">Короткая экстракция - самый концентрированный и сладкий эспрессо</div>
-        </div>
-        <h3>Ристретто</h3>
-        <p>170 ₽</p>
-        <div class="card-tags"><span>карамель</span><span>плотный</span></div>
-      </div>
-      <div class="product-card" data-category="black">
-        <div class="product-image">
-          <img src="images/turkish-coffee.jpg" alt="Кофе по-турецки" loading="lazy" />
-          <div class="product-description">Сваренный в турке на песке - густой, с плотной пенкой сверху</div>
-        </div>
-        <h3>Кофе по-турецки</h3>
-        <p>230 ₽</p>
-        <div class="card-tags"><span>пряности</span><span>густой</span></div>
-      </div>
-      <div class="product-card" data-category="milk">
-        <div class="product-image">
-          <img src="images/latte.jpg" alt="Латте" loading="lazy" />
-          <div class="product-description">Много молока, лёгкая пенка - самый мягкий молочный кофе</div>
-        </div>
-        <h3>Латте</h3>
-        <p>280 ₽</p>
-        <div class="card-tags"><span>молочный</span><span>ваниль</span></div>
-      </div>
-      <div class="product-card" data-category="milk">
-        <div class="product-image">
-          <img src="images/mocha.jpg" alt="Мокко" loading="lazy" />
-          <div class="product-description">Эспрессо, шоколад и молоко - кофе для тех, кто любит десерт в чашке</div>
-        </div>
-        <h3>Мокко</h3>
-        <p>300 ₽</p>
-        <div class="card-tags"><span>шоколад</span><span>сливки</span></div>
-      </div>
-      <div class="product-card" data-category="milk">
-        <div class="product-image">
-          <img src="images/cortado.jpg" alt="Кортадо" loading="lazy" />
-          <div class="product-description">Эспрессо и тёплое молоко в равных частях - баланс крепости и мягкости</div>
-        </div>
-        <h3>Кортадо</h3>
-        <p>250 ₽</p>
-        <div class="card-tags"><span>сбалансированный</span><span>ореховый</span></div>
-      </div>
-      <div class="product-card" data-category="cold">
-        <div class="product-image">
-          <img src="images/glace-coffee.jpg" alt="Гляссе" loading="lazy" />
-          <div class="product-description">Холодный кофе с шариком мороженого - десерт и бодрость в одном стакане</div>
-        </div>
-        <h3>Гляссе</h3>
-        <p>290 ₽</p>
-        <div class="card-tags"><span>сливочный</span><span>холодный</span></div>
-      </div>
-      <div class="product-card" data-category="cold">
-        <div class="product-image">
-          <img src="images/iced-latte.jpg" alt="Айс латте" loading="lazy" />
-          <div class="product-description">Латте со льдом - лёгкий и освежающий молочный кофе</div>
-        </div>
-        <h3>Айс латте</h3>
-        <p>280 ₽</p>
-        <div class="card-tags"><span>молочный</span><span>освежает</span></div>
-      </div>
-      <div class="product-card" data-category="cold">
-        <div class="product-image">
-          <img src="images/frappe.jpg" alt="Фраппе" loading="lazy" />
-          <div class="product-description">Взбитый холодный кофе с пышной пенкой - родом из Греции</div>
-        </div>
-        <h3>Фраппе</h3>
-        <p>270 ₽</p>
-        <div class="card-tags"><span>пенка</span><span>бодрящий</span></div>
-      </div>
-      <div class="product-card" data-category="tea">
-        <div class="product-image">
-          <img src="images/black-tea.jpg" alt="Чёрный чай листовой" loading="lazy" />
-          <div class="product-description">Классический крепкий чай, завариваем в чайнике на двоих</div>
-        </div>
-        <h3>Чёрный чай листовой</h3>
-        <p>160 ₽</p>
-        <div class="card-tags"><span>терпкий</span><span>бергамот</span></div>
-      </div>
-      <div class="product-card" data-category="tea">
-        <div class="product-image">
-          <img src="images/sencha-tea.jpg" alt="Зелёный чай сенча" loading="lazy" />
-          <div class="product-description">Свежий и травянистый - японская классика</div>
-        </div>
-        <h3>Зелёный чай сенча</h3>
-        <p>170 ₽</p>
-        <div class="card-tags"><span>травяной</span><span>свежий</span></div>
-      </div>
-      <div class="product-card" data-category="tea">
-        <div class="product-image">
-          <img src="images/masala-chai.jpg" alt="Чай масала" loading="lazy" />
-          <div class="product-description">Чёрный чай со специями и молоком - согревает в любую погоду</div>
-        </div>
-        <h3>Чай масала</h3>
-        <p>200 ₽</p>
-        <div class="card-tags"><span>корица</span><span>кардамон</span></div>
-      </div>
-      <div class="product-card" data-category="tea">
-        <div class="product-image">
-          <img src="images/hibiscus-tea.jpg" alt="Чай каркаде" loading="lazy" />
-          <div class="product-description">Кисловатый ярко-красный чай из лепестков гибискуса</div>
-        </div>
-        <h3>Чай каркаде</h3>
-        <p>180 ₽</p>
-        <div class="card-tags"><span>кислинка</span><span>ягодный</span></div>
-      </div>
-      <div class="product-card" data-category="tea">
-        <div class="product-image">
-          <img src="images/matcha-latte.jpg" alt="Матча латте" loading="lazy" />
-          <div class="product-description">Японский зелёный чай матча, взбитый с молоком</div>
-        </div>
-        <h3>Матча латте</h3>
-        <p>290 ₽</p>
-        <div class="card-tags"><span>сливочный</span><span>травяной</span></div>
-      </div>
-      <div class="product-card" data-category="tea">
-        <div class="product-image">
-          <img src="images/ivan-tea.jpg" alt="Иван-чай" loading="lazy" />
-          <div class="product-description">Ферментированный кипрей - мягкий вкус без кофеина</div>
-        </div>
-        <h3>Иван-чай</h3>
-        <p>170 ₽</p>
-        <div class="card-tags"><span>медовый</span><span>травяной</span></div>
-      </div>
-      <div class="product-card" data-category="tea">
-        <div class="product-image">
-          <img src="images/mint-tea.jpg" alt="Чай с чабрецом и мятой" loading="lazy" />
-          <div class="product-description">Травяной сбор для вечера - без кофеина, с лёгкой мятной свежестью</div>
-        </div>
-        <h3>Чай с чабрецом и мятой</h3>
-        <p>180 ₽</p>
-        <div class="card-tags"><span>мята</span><span>травы</span></div>
-      </div>
-      <div class="product-card" data-category="tea">
-        <div class="product-image">
-          <img src="images/seabuckthorn-tea.jpg" alt="Облепиховый чай" loading="lazy" />
-          <div class="product-description">Чёрный чай с облепихой и мёдом - согревающий и витаминный</div>
-        </div>
-        <h3>Облепиховый чай</h3>
-        <p>200 ₽</p>
-        <div class="card-tags"><span>облепиха</span><span>мёд</span></div>
-      </div>
-      <div class="product-card" data-category="drinks">
-        <div class="product-image">
-          <img src="images/cocoa.jpg" alt="Какао классическое" loading="lazy" />
-          <div class="product-description">Горячее какао на молоке - вкус из детства</div>
-        </div>
-        <h3>Какао классическое</h3>
-        <p>220 ₽</p>
-        <div class="card-tags"><span>шоколад</span><span>молочный</span></div>
-      </div>
-      <div class="product-card" data-category="drinks">
-        <div class="product-image">
-          <img src="images/hot-chocolate.jpg" alt="Горячий шоколад" loading="lazy" />
-          <div class="product-description">Густой растопленный шоколад с молоком - почти как десерт</div>
-        </div>
-        <h3>Горячий шоколад</h3>
-        <p>280 ₽</p>
-        <div class="card-tags"><span>густой</span><span>шоколад</span></div>
-      </div>
-      <div class="product-card" data-category="drinks">
-        <div class="product-image">
-          <img src="images/berry-smoothie.jpg" alt="Смузи ягодный" loading="lazy" />
-          <div class="product-description">Клубника, малина и йогурт - густой и освежающий</div>
-        </div>
-        <h3>Смузи ягодный</h3>
-        <p>270 ₽</p>
-        <div class="card-tags"><span>ягоды</span><span>освежает</span></div>
-      </div>
-      <div class="product-card" data-category="drinks">
-        <div class="product-image">
-          <img src="images/mango-smoothie.jpg" alt="Смузи манго-банан" loading="lazy" />
-          <div class="product-description">Тропический дуэт манго и банана</div>
-        </div>
-        <h3>Смузи манго-банан</h3>
-        <p>270 ₽</p>
-        <div class="card-tags"><span>манго</span><span>банан</span></div>
-      </div>
-      <div class="product-card" data-category="drinks">
-        <div class="product-image">
-          <img src="images/ginger-lemonade.jpg" alt="Лимонад имбирный" loading="lazy" />
-          <div class="product-description">Домашний лимонад с имбирём и лаймом - бодрит не хуже кофе</div>
-        </div>
-        <h3>Лимонад имбирный</h3>
-        <p>240 ₽</p>
-        <div class="card-tags"><span>имбирь</span><span>лайм</span></div>
-      </div>
-      <div class="product-card" data-category="drinks">
-        <div class="product-image">
-          <img src="images/strawberry-lemonade.jpg" alt="Лимонад клубника-базилик" loading="lazy" />
-          <div class="product-description">Клубника и базилик - неожиданное освежающее сочетание</div>
-        </div>
-        <h3>Лимонад клубника-базилик</h3>
-        <p>250 ₽</p>
-        <div class="card-tags"><span>клубника</span><span>базилик</span></div>
-      </div>
-      <div class="product-card" data-category="drinks">
-        <div class="product-image">
-          <img src="images/orange-juice.jpg" alt="Апельсиновый фреш" loading="lazy" />
-          <div class="product-description">Свежевыжатый апельсиновый сок - готовим при заказе</div>
-        </div>
-        <h3>Апельсиновый фреш</h3>
-        <p>260 ₽</p>
-        <div class="card-tags"><span>цитрус</span><span>витамин C</span></div>
-      </div>
-      <div class="product-card" data-category="drinks">
-        <div class="product-image">
-          <img src="images/cranberry-drink.jpg" alt="Морс клюквенный" loading="lazy" />
-          <div class="product-description">Домашний морс из клюквы - кисло-сладкий и освежающий</div>
-        </div>
-        <h3>Морс клюквенный</h3>
-        <p>190 ₽</p>
-        <div class="card-tags"><span>клюква</span><span>кислинка</span></div>
-      </div>
-      <div class="product-card" data-category="drinks">
-        <div class="product-image">
-          <img src="images/vanilla-milkshake.jpg" alt="Молочный коктейль ванильный" loading="lazy" />
-          <div class="product-description">Густой ванильный милкшейк со взбитыми сливками</div>
-        </div>
-        <h3>Молочный коктейль ванильный</h3>
-        <p>260 ₽</p>
-        <div class="card-tags"><span>ваниль</span><span>сливки</span></div>
-      </div>
-      <div class="product-card" data-category="dessert">
-        <div class="product-image">
-          <img src="images/nyc-cheesecake.jpg" alt="Чизкейк Нью-Йорк" loading="lazy" />
-          <div class="product-description">Классический сливочный чизкейк на песочной основе</div>
-        </div>
-        <h3>Чизкейк Нью-Йорк</h3>
-        <p>320 ₽</p>
-        <div class="card-tags"><span>сливочный</span><span>песочная основа</span></div>
-      </div>
-      <div class="product-card" data-category="dessert">
-        <div class="product-image">
-          <img src="images/basque-cheesecake.jpg" alt="Чизкейк Баскский" loading="lazy" />
-          <div class="product-description">Обожжённый снаружи, нежный внутри - без основы</div>
-        </div>
-        <h3>Чизкейк Баскский</h3>
-        <p>330 ₽</p>
-        <div class="card-tags"><span>карамелизация</span><span>нежный</span></div>
-      </div>
-      <div class="product-card" data-category="dessert">
-        <div class="product-image">
-          <img src="images/tiramisu.jpg" alt="Тирамису" loading="lazy" />
-          <div class="product-description">Маскарпоне, кофе и какао - итальянская классика</div>
-        </div>
-        <h3>Тирамису</h3>
-        <p>340 ₽</p>
-        <div class="card-tags"><span>маскарпоне</span><span>кофе</span></div>
-      </div>
-      <div class="product-card" data-category="dessert">
-        <div class="product-image">
-          <img src="images/medovik.jpg" alt="Медовик" loading="lazy" />
-          <div class="product-description">Медовые коржи и сметанный крем - домашний рецепт</div>
-        </div>
-        <h3>Медовик</h3>
-        <p>280 ₽</p>
-        <div class="card-tags"><span>мёд</span><span>сметана</span></div>
-      </div>
-      <div class="product-card" data-category="dessert">
-        <div class="product-image">
-          <img src="images/napoleon-cake.jpg" alt="Наполеон" loading="lazy" />
-          <div class="product-description">Слоёное тесто и заварной крем - хрустящая классика</div>
-        </div>
-        <h3>Наполеон</h3>
-        <p>290 ₽</p>
-        <div class="card-tags"><span>слоёный</span><span>заварной крем</span></div>
-      </div>
-      <div class="product-card" data-category="dessert">
-        <div class="product-image">
-          <img src="images/carrot-cake.jpg" alt="Морковный торт" loading="lazy" />
-          <div class="product-description">Морковь, орехи и крем-чиз - влажный и пряный</div>
-        </div>
-        <h3>Морковный торт</h3>
-        <p>300 ₽</p>
-        <div class="card-tags"><span>морковь</span><span>крем-чиз</span></div>
-      </div>
-      <div class="product-card" data-category="dessert">
-        <div class="product-image">
-          <img src="images/brownie.jpg" alt="Брауни шоколадный" loading="lazy" />
-          <div class="product-description">Плотный шоколадный брауни с орехами</div>
-        </div>
-        <h3>Брауни шоколадный</h3>
-        <p>260 ₽</p>
-        <div class="card-tags"><span>шоколад</span><span>орех</span></div>
-      </div>
-      <div class="product-card" data-category="dessert">
-        <div class="product-image">
-          <img src="images/panna-cotta.jpg" alt="Панна-котта" loading="lazy" />
-          <div class="product-description">Нежные сливки с ягодным соусом</div>
-        </div>
-        <h3>Панна-котта</h3>
-        <p>270 ₽</p>
-        <div class="card-tags"><span>сливки</span><span>ягодный соус</span></div>
-      </div>
-      <div class="product-card" data-category="dessert">
-        <div class="product-image">
-          <img src="images/eclair.jpg" alt="Эклер заварной" loading="lazy" />
-          <div class="product-description">Заварное тесто и крем внутри - французская классика</div>
-        </div>
-        <h3>Эклер заварной</h3>
-        <p>200 ₽</p>
-        <div class="card-tags"><span>заварной крем</span><span>шоколад</span></div>
-      </div>
-      <div class="product-card" data-category="dessert">
-        <div class="product-image">
-          <img src="images/almond-croissant.jpg" alt="Круассан миндальный" loading="lazy" />
-          <div class="product-description">Слоёный круассан с миндальным кремом и лепестками</div>
-        </div>
-        <h3>Круассан миндальный</h3>
-        <p>260 ₽</p>
-        <div class="card-tags"><span>миндаль</span><span>слоёный</span></div>
-      </div>
-      <div class="product-card" data-category="dessert">
-        <div class="product-image">
-          <img src="images/blueberry-muffin.jpg" alt="Маффин черничный" loading="lazy" />
-          <div class="product-description">Влажный маффин с целыми ягодами черники</div>
-        </div>
-        <h3>Маффин черничный</h3>
-        <p>220 ₽</p>
-        <div class="card-tags"><span>черника</span><span>ванильный</span></div>
-      </div>
-      <div class="product-card" data-category="dessert">
-        <div class="product-image">
-          <img src="images/cinnamon-roll.jpg" alt="Синнабон" loading="lazy" />
-          <div class="product-description">Булочка с корицей и кремовой глазурью</div>
-        </div>
-        <h3>Синнабон</h3>
-        <p>250 ₽</p>
-        <div class="card-tags"><span>корица</span><span>глазурь</span></div>
-      </div>
-      <div class="product-card" data-category="dessert">
-        <div class="product-image">
-          <img src="images/churros.jpg" alt="Чурро с шоколадным соусом" loading="lazy" />
-          <div class="product-description">Хрустящие палочки из заварного теста в сахаре</div>
-        </div>
-        <h3>Чурро с шоколадным соусом</h3>
-        <p>230 ₽</p>
-        <div class="card-tags"><span>корица</span><span>шоколадный соус</span></div>
-      </div>
-      <div class="product-card" data-category="dessert">
-        <div class="product-image">
-          <img src="images/macarons.jpg" alt="Макарон ассорти" loading="lazy" />
-          <div class="product-description">Три вкуса миндального печенья с начинкой</div>
-        </div>
-        <h3>Макарон ассорти</h3>
-        <p>270 ₽</p>
-        <div class="card-tags"><span>миндаль</span><span>разные вкусы</span></div>
-      </div>
-      <div class="product-card" data-category="food">
-        <div class="product-image">
-          <img src="images/butter-croissant.jpg" alt="Круассан классический" loading="lazy" />
-          <div class="product-description">Слоёный масляный круассан - выпекаем каждое утро</div>
-        </div>
-        <h3>Круассан классический</h3>
-        <p>190 ₽</p>
-        <div class="card-tags"><span>сливочное масло</span><span>хрустящий</span></div>
-      </div>
-      <div class="product-card" data-category="food">
-        <div class="product-image">
-          <img src="images/chicken-avocado-sandwich.jpg" alt="Сэндвич с курицей и авокадо" loading="lazy" />
-          <div class="product-description">Куриная грудка, авокадо и соус на цельнозерновом хлебе</div>
-        </div>
-        <h3>Сэндвич с курицей и авокадо</h3>
-        <p>330 ₽</p>
-        <div class="card-tags"><span>курица</span><span>авокадо</span></div>
-      </div>
-      <div class="product-card" data-category="food">
-        <div class="product-image">
-          <img src="images/club-sandwich.jpg" alt="Сэндвич клаб" loading="lazy" />
-          <div class="product-description">Классика с курицей, беконом и овощами в три слоя</div>
-        </div>
-        <h3>Сэндвич клаб</h3>
-        <p>350 ₽</p>
-        <div class="card-tags"><span>бекон</span><span>курица</span></div>
-      </div>
-      <div class="product-card" data-category="food">
-        <div class="product-image">
-          <img src="images/avocado-toast.jpg" alt="Тост с авокадо и яйцом" loading="lazy" />
-          <div class="product-description">Тост на закваске, авокадо-крем и яйцо пашот</div>
-        </div>
-        <h3>Тост с авокадо и яйцом</h3>
-        <p>360 ₽</p>
-        <div class="card-tags"><span>авокадо</span><span>яйцо пашот</span></div>
-      </div>
-      <div class="product-card" data-category="food">
-        <div class="product-image">
-          <img src="images/granola-bowl.jpg" alt="Гранола с йогуртом и ягодами" loading="lazy" />
-          <div class="product-description">Домашняя гранола, греческий йогурт и свежие ягоды</div>
-        </div>
-        <h3>Гранола с йогуртом и ягодами</h3>
-        <p>290 ₽</p>
-        <div class="card-tags"><span>йогурт</span><span>ягоды</span></div>
-      </div>
-      <div class="product-card" data-category="food">
-        <div class="product-image">
-          <img src="images/vegetable-omelette.jpg" alt="Омлет с овощами" loading="lazy" />
-          <div class="product-description">Пышный омлет с сезонными овощами и зеленью</div>
-        </div>
-        <h3>Омлет с овощами</h3>
-        <p>310 ₽</p>
-        <div class="card-tags"><span>овощи</span><span>сытный</span></div>
-      </div>
-      <div class="product-card" data-category="food">
-        <div class="product-image">
-          <img src="images/spinach-quiche.jpg" alt="Киш со шпинатом" loading="lazy" />
-          <div class="product-description">Открытый пирог с заварным кремом, шпинатом и сыром</div>
-        </div>
-        <h3>Киш со шпинатом</h3>
-        <p>300 ₽</p>
-        <div class="card-tags"><span>шпинат</span><span>сыр</span></div>
-      </div>
-      <div class="product-card" data-category="food">
-        <div class="product-image">
-          <img src="images/panini.jpg" alt="Панини с ветчиной и сыром" loading="lazy" />
-          <div class="product-description">Прижаренный панини с ветчиной, сыром и томатом</div>
-        </div>
-        <h3>Панини с ветчиной и сыром</h3>
-        <p>310 ₽</p>
-        <div class="card-tags"><span>ветчина</span><span>сыр</span></div>
-      </div>
-      <div class="product-card" data-category="food">
-        <div class="product-image">
-          <img src="images/caesar-salad.jpg" alt="Салат Цезарь с курицей" loading="lazy" />
-          <div class="product-description">Хрустящий салат, курица гриль, соус и пармезан</div>
-        </div>
-        <h3>Салат Цезарь с курицей</h3>
-        <p>340 ₽</p>
-        <div class="card-tags"><span>курица гриль</span><span>пармезан</span></div>
-      </div>
-      <div class="product-card" data-category="food">
-        <div class="product-image">
-          <img src="images/oatmeal-bowl.jpg" alt="Овсяная каша на миндальном молоке" loading="lazy" />
-          <div class="product-description">Овсянка с ягодами, орехами и мёдом - сытный завтрак</div>
-        </div>
-        <h3>Овсяная каша на миндальном молоке</h3>
-        <p>250 ₽</p>
-        <div class="card-tags"><span>ягоды</span><span>мёд</span></div>
       </div>
     </div>
   </section>

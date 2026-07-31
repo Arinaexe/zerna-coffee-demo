@@ -134,38 +134,23 @@ document.querySelectorAll('.faq-item').forEach((item) => {
   });
 });
 
-// выпадающий фильтр меню по категориям
-const filterWrap = document.querySelector('.menu-filter');
-if (filterWrap) {
-  const filterBtn = filterWrap.querySelector('.menu-filter-btn');
-  const filterLabel = filterWrap.querySelector('#filterLabel');
-  const filterItems = filterWrap.querySelectorAll('.menu-filter-list li');
+// аккордеон категорий меню - открыта только одна категория за раз, чтобы страница не разрасталась
+document.querySelectorAll('.menu-cat-header').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.menu-cat-item');
+    const wasOpen = item.classList.contains('open');
 
-  filterBtn.addEventListener('click', () => {
-    const isOpen = filterWrap.classList.toggle('open');
-    filterBtn.setAttribute('aria-expanded', isOpen);
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!filterWrap.contains(e.target)) filterWrap.classList.remove('open');
-  });
-
-  filterItems.forEach((li) => {
-    li.addEventListener('click', () => {
-      filterItems.forEach((x) => x.classList.remove('active'));
-      li.classList.add('active');
-      filterLabel.textContent = li.textContent;
-      filterWrap.classList.remove('open');
-      filterBtn.setAttribute('aria-expanded', 'false');
-
-      const filter = li.dataset.filter;
-      document.querySelectorAll('.product-card').forEach((card) => {
-        const match = filter === 'all' || card.dataset.category === filter;
-        card.classList.toggle('hidden', !match);
-      });
+    document.querySelectorAll('.menu-cat-item.open').forEach((openItem) => {
+      openItem.classList.remove('open');
+      openItem.querySelector('.menu-cat-header').setAttribute('aria-expanded', 'false');
     });
+
+    if (!wasOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
   });
-}
+});
 
 // живой статус "открыто/закрыто" - считает по реальному времени и часам работы (8:00-21:00)
 // трекер свежести текущей обжарки - считает от даты обжарки до пика вкуса (2-4 недели)
