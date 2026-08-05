@@ -1,4 +1,3 @@
-/* global supabase */
 const config = window.ZERNA_SUPABASE;
 const configured = Boolean(config?.url && config?.anonKey);
 const loginScreen = document.getElementById('loginScreen');
@@ -7,9 +6,9 @@ const message = document.getElementById('loginMessage');
 const saveState = document.getElementById('saveState');
 const menuList = document.getElementById('menuList');
 const template = document.getElementById('menuItemTemplate');
-let client;
 let content;
 let dirty = false;
+let accessToken = sessionStorage.getItem('zerna_admin_token') || '';
 
 const getPath = (object, path) => path.split('.').reduce((value, key) => value?.[key], object);
 const setPath = (object, path, value) => {
@@ -19,6 +18,32 @@ const setPath = (object, path, value) => {
 };
 const markDirty = () => { dirty = true; saveState.textContent = 'Есть несохранённые изменения'; saveState.classList.add('is-dirty'); };
 const markSaved = () => { dirty = false; saveState.textContent = 'Все изменения сохранены'; saveState.classList.remove('is-dirty'); };
+
+async function api(path, { method = 'GET', body, authenticated = false } = {}) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 12000);
+  try {
+    const response = await fetch(`${config.url}${path}`, {
+      method,
+      signal: controller.signal,
+      headers: {
+        apikey: config.anonKey,
+        Authorization: `Bearer ${authenticated ? accessToken : config.anonKey}`,
+        ...(body ? { 'Content-Type': 'application/json' } : {}),
+        ...(method !== 'GET' ? { Prefer: 'resolution=merge-duplicates,return=representation' } : {})
+      },
+      body: body ? JSON.stringify(body) : undefined
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.msg || result.error_description || result.message || 'Не удалось выполнить запрос.');
+    return result;
+  } catch (error) {
+    if (error.name === 'AbortError') throw new Error('Supabase не ответил за 12 секунд. Проверьте подключение или блокировщик рекламы.');
+    throw error;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
 
 async function defaultContent() {
   const response = await fetch('../index.html', { cache: 'no-store' });
@@ -58,9 +83,8 @@ function renderMenu() {
 }
 
 async function loadContent() {
-  const { data, error } = await client.from('site_content').select('payload').eq('id', 'main').maybeSingle();
-  if (error) throw error;
-  content = data?.payload || await defaultContent();
+  const records = await api('/rest/v1/site_content?id=eq.main&select=payload');
+  content = records[0]?.payload || await defaultContent();
   fillForm();
 }
 
@@ -74,12 +98,15 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
   if (!configured) { message.textContent = 'Сначала добавьте URL и anon key Supabase в supabase-config.js.'; return; }
   const form = new FormData(event.currentTarget); message.textContent = 'Проверяем доступ…';
   try {
-    const result = await Promise.race([
-      client.auth.signInWithPassword({ email: form.get('email'), password: form.get('password') }),
-      new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 12000))
-    ]);
+    const result = await api('/auth/v1/token?grant_type=password', {
+      method: 'POST',
+      body: { email: form.get('email'), password: form.get('password') }
+    });
+    if (!result.access_token) throw new Error('Supabase не вернул токен доступа.');
+    accessToken = result.access_token;
+    sessionStorage.setItem('zerna_admin_token', accessToken);
     if (result.error) {
-      message.textContent = result.error.message === 'Email not confirmed'
+      message.textContent = result.error === 'Email not confirmed'
         ? 'Подтвердите email в письме от Supabase или включите Auto Confirm для пользователя.'
         : 'Не удалось войти. Проверьте почту и пароль.';
       return;
@@ -87,7 +114,12 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
     showApp();
   } catch (error) {
     console.error('Supabase login failed', error);
-    message.textContent = 'Нет ответа от Supabase. Отключите блокировщик рекламы для этой страницы и попробуйте снова.';
+    const loginMessage = error.message || '';
+    message.textContent = loginMessage === 'Invalid login credentials'
+      ? 'Не удалось войти. Проверьте почту и пароль.'
+      : loginMessage === 'Email not confirmed'
+        ? 'Подтвердите email в настройках пользователя Supabase.'
+        : loginMessage || 'Не удалось войти. Проверьте почту и пароль.';
   }
 });
 
@@ -112,17 +144,20 @@ menuList.addEventListener('click', (event) => { if (event.target.closest('.delet
 
 document.getElementById('saveButton').addEventListener('click', async () => {
   const button = document.getElementById('saveButton'); button.disabled = true; button.textContent = 'Сохраняем…';
-  const { error } = await client.from('site_content').upsert({ id: 'main', payload: content, updated_at: new Date().toISOString() });
-  button.disabled = false; button.innerHTML = 'Сохранить <span>⌘S</span>';
-  if (error) { alert(`Не удалось сохранить: ${error.message}`); return; }
-  markSaved();
+  try {
+    await api('/rest/v1/site_content', { method: 'POST', authenticated: true, body: { id: 'main', payload: content, updated_at: new Date().toISOString() } });
+    markSaved();
+  } catch (error) {
+    alert(`Не удалось сохранить: ${error.message}`);
+  } finally {
+    button.disabled = false; button.innerHTML = 'Сохранить <span>⌘S</span>';
+  }
 });
 
-document.getElementById('signOut').addEventListener('click', async () => { await client.auth.signOut(); location.reload(); });
+document.getElementById('signOut').addEventListener('click', () => { sessionStorage.removeItem('zerna_admin_token'); location.reload(); });
 window.addEventListener('beforeunload', (event) => { if (dirty) { event.preventDefault(); event.returnValue = ''; } });
 document.addEventListener('keydown', (event) => { if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's') { event.preventDefault(); document.getElementById('saveButton').click(); } });
 
 if (configured) {
-  client = supabase.createClient(config.url, config.anonKey);
-  client.auth.getSession().then(({ data }) => { if (data.session) showApp(); });
+  if (accessToken) showApp();
 }
