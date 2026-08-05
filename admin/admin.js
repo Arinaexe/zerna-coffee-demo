@@ -1,5 +1,4 @@
-const config = window.ZERNA_SUPABASE;
-const configured = Boolean(config?.url && config?.anonKey);
+const github = { owner: 'Arinaexe', repo: 'zerna-coffee-demo', branch: 'main' };
 const loginScreen = document.getElementById('loginScreen');
 const appShell = document.getElementById('appShell');
 const message = document.getElementById('loginMessage');
@@ -8,7 +7,7 @@ const menuList = document.getElementById('menuList');
 const template = document.getElementById('menuItemTemplate');
 let content;
 let dirty = false;
-let accessCode = sessionStorage.getItem('zerna_admin_code') || '';
+let githubToken = sessionStorage.getItem('zerna_github_token') || '';
 
 const getPath = (object, path) => path.split('.').reduce((value, key) => value?.[key], object);
 const setPath = (object, path, value) => {
@@ -18,27 +17,29 @@ const setPath = (object, path, value) => {
 };
 const markDirty = () => { dirty = true; saveState.textContent = 'Есть несохранённые изменения'; saveState.classList.add('is-dirty'); };
 const markSaved = () => { dirty = false; saveState.textContent = 'Все изменения сохранены'; saveState.classList.remove('is-dirty'); };
+const encode = (value) => btoa(unescape(encodeURIComponent(value)));
+const decode = (value) => decodeURIComponent(escape(atob(value.replace(/\n/g, ''))));
 
-async function api(path, { method = 'GET', body } = {}) {
+async function githubApi(path, { method = 'GET', body } = {}) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 12000);
   try {
-    const response = await fetch(`${config.url}${path}`, {
+    const response = await fetch(`https://api.github.com${path}`, {
       method,
       signal: controller.signal,
       headers: {
-        apikey: config.anonKey,
-        Authorization: `Bearer ${config.anonKey}`,
-        ...(body ? { 'Content-Type': 'application/json' } : {}),
-        ...(method !== 'GET' ? { Prefer: 'resolution=merge-duplicates,return=representation' } : {})
+        Accept: 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        ...(githubToken ? { Authorization: `Bearer ${githubToken}` } : {}),
+        ...(body ? { 'Content-Type': 'application/json' } : {})
       },
       body: body ? JSON.stringify(body) : undefined
     });
     const result = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(result.msg || result.error_description || result.message || 'Не удалось выполнить запрос.');
+    if (!response.ok) throw new Error(result.message || 'GitHub не выполнил запрос.');
     return result;
   } catch (error) {
-    if (error.name === 'AbortError') throw new Error('Supabase не ответил за 12 секунд. Проверьте подключение или блокировщик рекламы.');
+    if (error.name === 'AbortError') throw new Error('GitHub не ответил за 12 секунд. Проверьте подключение.');
     throw error;
   } finally {
     clearTimeout(timeout);
@@ -83,8 +84,9 @@ function renderMenu() {
 }
 
 async function loadContent() {
-  const records = await api('/rest/v1/site_content?id=eq.main&select=payload');
-  content = records[0]?.payload || await defaultContent();
+  const response = await fetch('../content.json', { cache: 'no-store' });
+  const saved = response.ok ? await response.json() : {};
+  content = Object.keys(saved).length ? saved : await defaultContent();
   fillForm();
 }
 
@@ -95,23 +97,18 @@ async function showApp() {
 
 document.getElementById('loginForm').addEventListener('submit', async (event) => {
   event.preventDefault();
-  if (!configured) { message.textContent = 'Сначала добавьте URL и anon key Supabase в supabase-config.js.'; return; }
-  const form = new FormData(event.currentTarget); message.textContent = 'Проверяем доступ…';
+  const form = new FormData(event.currentTarget); githubToken = form.get('password').trim();
+  if (!githubToken) { message.textContent = 'Вставьте токен GitHub.'; return; }
+  message.textContent = 'Проверяем доступ…';
   try {
-    const result = await api('/rest/v1/rpc/admin_login', {
-      method: 'POST',
-      body: { p_password: form.get('password') }
-    });
-    if (!result) {
-      message.textContent = 'Неверный код доступа.';
-      return;
-    }
-    accessCode = form.get('password');
-    sessionStorage.setItem('zerna_admin_code', accessCode);
+    await githubApi('/user');
+    sessionStorage.setItem('zerna_github_token', githubToken);
     showApp();
   } catch (error) {
-    console.error('CMS login failed', error);
-    message.textContent = error.message || 'Не удалось проверить код доступа.';
+    console.error('GitHub login failed', error);
+    message.textContent = error.message === 'Bad credentials'
+      ? 'Токен GitHub не распознан. Создайте новый токен с правом Contents: Read and write.'
+      : error.message || 'Не удалось проверить токен GitHub.';
   }
 });
 
@@ -137,8 +134,14 @@ menuList.addEventListener('click', (event) => { if (event.target.closest('.delet
 document.getElementById('saveButton').addEventListener('click', async () => {
   const button = document.getElementById('saveButton'); button.disabled = true; button.textContent = 'Сохраняем…';
   try {
-    await api('/rest/v1/rpc/save_site_content', { method: 'POST', body: { p_password: accessCode, p_payload: content } });
+    const path = `/repos/${github.owner}/${github.repo}/contents/content.json?ref=${github.branch}`;
+    const current = await githubApi(path);
+    await githubApi(`/repos/${github.owner}/${github.repo}/contents/content.json`, {
+      method: 'PUT',
+      body: { message: 'Обновить содержимое сайта из админ-панели', content: encode(JSON.stringify(content, null, 2)), sha: current.sha, branch: github.branch }
+    });
     markSaved();
+    saveState.textContent = 'Сохранено. Сайт обновится примерно через минуту';
   } catch (error) {
     alert(`Не удалось сохранить: ${error.message}`);
   } finally {
@@ -146,10 +149,8 @@ document.getElementById('saveButton').addEventListener('click', async () => {
   }
 });
 
-document.getElementById('signOut').addEventListener('click', () => { sessionStorage.removeItem('zerna_admin_code'); location.reload(); });
+document.getElementById('signOut').addEventListener('click', () => { sessionStorage.removeItem('zerna_github_token'); location.reload(); });
 window.addEventListener('beforeunload', (event) => { if (dirty) { event.preventDefault(); event.returnValue = ''; } });
 document.addEventListener('keydown', (event) => { if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's') { event.preventDefault(); document.getElementById('saveButton').click(); } });
 
-if (configured) {
-  if (accessCode) showApp();
-}
+if (githubToken) githubApi('/user').then(showApp).catch(() => sessionStorage.removeItem('zerna_github_token'));
