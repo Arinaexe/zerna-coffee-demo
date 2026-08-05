@@ -1,5 +1,5 @@
 -- Run this once in Supabase: SQL Editor > New query.
--- The code for the admin panel is: Zerna-CMS-7mQ4-Violet-82
+-- Before running, replace __YOUR_PRIVATE_CODE__ with your private access code.
 create extension if not exists pgcrypto;
 
 create table if not exists public.cms_admin_settings (
@@ -8,7 +8,7 @@ create table if not exists public.cms_admin_settings (
 );
 
 insert into public.cms_admin_settings (id, password_hash)
-values (true, crypt('Zerna-CMS-7mQ4-Violet-82', gen_salt('bf')))
+values (true, crypt('__YOUR_PRIVATE_CODE__', gen_salt('bf')))
 on conflict (id) do update set password_hash = excluded.password_hash;
 
 create or replace function public.admin_login(p_password text)
