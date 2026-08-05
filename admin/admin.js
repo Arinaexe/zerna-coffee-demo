@@ -8,7 +8,7 @@ const menuList = document.getElementById('menuList');
 const template = document.getElementById('menuItemTemplate');
 let content;
 let dirty = false;
-let accessToken = sessionStorage.getItem('zerna_admin_token') || '';
+let accessCode = sessionStorage.getItem('zerna_admin_code') || '';
 
 const getPath = (object, path) => path.split('.').reduce((value, key) => value?.[key], object);
 const setPath = (object, path, value) => {
@@ -19,7 +19,7 @@ const setPath = (object, path, value) => {
 const markDirty = () => { dirty = true; saveState.textContent = 'Есть несохранённые изменения'; saveState.classList.add('is-dirty'); };
 const markSaved = () => { dirty = false; saveState.textContent = 'Все изменения сохранены'; saveState.classList.remove('is-dirty'); };
 
-async function api(path, { method = 'GET', body, authenticated = false } = {}) {
+async function api(path, { method = 'GET', body } = {}) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 12000);
   try {
@@ -28,7 +28,7 @@ async function api(path, { method = 'GET', body, authenticated = false } = {}) {
       signal: controller.signal,
       headers: {
         apikey: config.anonKey,
-        Authorization: `Bearer ${authenticated ? accessToken : config.anonKey}`,
+        Authorization: `Bearer ${config.anonKey}`,
         ...(body ? { 'Content-Type': 'application/json' } : {}),
         ...(method !== 'GET' ? { Prefer: 'resolution=merge-duplicates,return=representation' } : {})
       },
@@ -98,28 +98,20 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
   if (!configured) { message.textContent = 'Сначала добавьте URL и anon key Supabase в supabase-config.js.'; return; }
   const form = new FormData(event.currentTarget); message.textContent = 'Проверяем доступ…';
   try {
-    const result = await api('/auth/v1/token?grant_type=password', {
+    const result = await api('/rest/v1/rpc/admin_login', {
       method: 'POST',
-      body: { email: form.get('email'), password: form.get('password') }
+      body: { p_password: form.get('password') }
     });
-    if (!result.access_token) throw new Error('Supabase не вернул токен доступа.');
-    accessToken = result.access_token;
-    sessionStorage.setItem('zerna_admin_token', accessToken);
-    if (result.error) {
-      message.textContent = result.error === 'Email not confirmed'
-        ? 'Подтвердите email в письме от Supabase или включите Auto Confirm для пользователя.'
-        : 'Не удалось войти. Проверьте почту и пароль.';
+    if (!result) {
+      message.textContent = 'Неверный код доступа.';
       return;
     }
+    accessCode = form.get('password');
+    sessionStorage.setItem('zerna_admin_code', accessCode);
     showApp();
   } catch (error) {
-    console.error('Supabase login failed', error);
-    const loginMessage = error.message || '';
-    message.textContent = loginMessage === 'Invalid login credentials'
-      ? 'Не удалось войти. Проверьте почту и пароль.'
-      : loginMessage === 'Email not confirmed'
-        ? 'Подтвердите email в настройках пользователя Supabase.'
-        : loginMessage || 'Не удалось войти. Проверьте почту и пароль.';
+    console.error('CMS login failed', error);
+    message.textContent = error.message || 'Не удалось проверить код доступа.';
   }
 });
 
@@ -145,7 +137,7 @@ menuList.addEventListener('click', (event) => { if (event.target.closest('.delet
 document.getElementById('saveButton').addEventListener('click', async () => {
   const button = document.getElementById('saveButton'); button.disabled = true; button.textContent = 'Сохраняем…';
   try {
-    await api('/rest/v1/site_content', { method: 'POST', authenticated: true, body: { id: 'main', payload: content, updated_at: new Date().toISOString() } });
+    await api('/rest/v1/rpc/save_site_content', { method: 'POST', body: { p_password: accessCode, p_payload: content } });
     markSaved();
   } catch (error) {
     alert(`Не удалось сохранить: ${error.message}`);
@@ -154,10 +146,10 @@ document.getElementById('saveButton').addEventListener('click', async () => {
   }
 });
 
-document.getElementById('signOut').addEventListener('click', () => { sessionStorage.removeItem('zerna_admin_token'); location.reload(); });
+document.getElementById('signOut').addEventListener('click', () => { sessionStorage.removeItem('zerna_admin_code'); location.reload(); });
 window.addEventListener('beforeunload', (event) => { if (dirty) { event.preventDefault(); event.returnValue = ''; } });
 document.addEventListener('keydown', (event) => { if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's') { event.preventDefault(); document.getElementById('saveButton').click(); } });
 
 if (configured) {
-  if (accessToken) showApp();
+  if (accessCode) showApp();
 }
