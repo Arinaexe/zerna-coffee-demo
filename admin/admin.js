@@ -73,9 +73,22 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
   event.preventDefault();
   if (!configured) { message.textContent = 'Сначала добавьте URL и anon key Supabase в supabase-config.js.'; return; }
   const form = new FormData(event.currentTarget); message.textContent = 'Проверяем доступ…';
-  const { error } = await client.auth.signInWithPassword({ email: form.get('email'), password: form.get('password') });
-  if (error) { message.textContent = 'Не удалось войти. Проверьте почту и пароль.'; return; }
-  showApp();
+  try {
+    const result = await Promise.race([
+      client.auth.signInWithPassword({ email: form.get('email'), password: form.get('password') }),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 12000))
+    ]);
+    if (result.error) {
+      message.textContent = result.error.message === 'Email not confirmed'
+        ? 'Подтвердите email в письме от Supabase или включите Auto Confirm для пользователя.'
+        : 'Не удалось войти. Проверьте почту и пароль.';
+      return;
+    }
+    showApp();
+  } catch (error) {
+    console.error('Supabase login failed', error);
+    message.textContent = 'Нет ответа от Supabase. Отключите блокировщик рекламы для этой страницы и попробуйте снова.';
+  }
 });
 
 document.querySelectorAll('.nav-item').forEach((button) => button.addEventListener('click', () => {
