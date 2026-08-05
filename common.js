@@ -181,7 +181,9 @@ function updateStatus() {
 }
 updateStatus();
 
-// на телефоне нет наведения мышкой - тап по карточке тоже показывает описание
-document.querySelectorAll('.product-card').forEach((card) => {
-  card.addEventListener('click', () => card.classList.toggle('active'));
+// на телефоне нет наведения мышкой - тап по карточке тоже показывает описание.
+// Делегирование нужно ещё и для позиций, которые CMS подгружает после загрузки страницы.
+document.addEventListener('click', (event) => {
+  const card = event.target.closest('.product-card');
+  if (card) card.classList.toggle('active');
 });

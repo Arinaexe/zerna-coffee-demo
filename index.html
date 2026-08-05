@@ -76,10 +76,10 @@
     </div>
     <div class="hero-scrim"></div>
     <div class="hero-content">
-      <span class="hero-eyebrow">Specialty coffee</span>
-      <h1>Зёрна</h1>
-      <p>Кофе, который обжаривают, а не жгут. Своя обжарка каждую неделю, зерно напрямую от фермеров.</p>
-      <a href="#menu" class="hero-cta">Смотреть меню</a>
+      <span class="hero-eyebrow" data-content="hero.eyebrow">Specialty coffee</span>
+      <h1 data-content="hero.title">Зёрна</h1>
+      <p data-content="hero.description">Кофе, который обжаривают, а не жгут. Своя обжарка каждую неделю, зерно напрямую от фермеров.</p>
+      <a href="#menu" class="hero-cta" data-content="hero.cta">Смотреть меню</a>
     </div>
   </section>
 
@@ -101,8 +101,8 @@
         <span class="section-eyebrow">Сейчас в обжарке</span>
         <span class="batch-day" id="batchDay">День свежести</span>
       </div>
-      <h3 class="batch-origin">Эфиопия · Гуджи, ферма Естер</h3>
-      <p class="batch-meta">Обработка: мытая · Обжарено: <span id="batchDate">…</span></p>
+      <h3 class="batch-origin" data-content="roast.origin">Эфиопия · Гуджи, ферма Естер</h3>
+      <p class="batch-meta" data-content="roast.meta">Обработка: мытая · Обжарено: <span id="batchDate">…</span></p>
       <div class="batch-gauge">
         <div class="batch-gauge-track">
           <span class="batch-zone zone-wake"></span>
@@ -116,7 +116,7 @@
           <span>раскрывается тише</span>
         </div>
       </div>
-      <div class="flavor-tags">
+      <div class="flavor-tags" data-content="roast.tags">
         <span>ягоды</span>
         <span>жасмин</span>
         <span>чайное тело</span>
@@ -849,15 +849,15 @@
     <div class="contacts-grid">
       <a class="contact-card" href="#">
         <span class="contact-label">Адрес</span>
-        <span class="contact-value">Малая Дмитровка, 12</span>
+        <span class="contact-value" data-content="contacts.address">Малая Дмитровка, 12</span>
       </a>
       <a class="contact-card" href="#">
         <span class="contact-label">Часы работы</span>
-        <span class="contact-value">Ежедневно, 8:00–21:00</span>
+        <span class="contact-value" data-content="contacts.hours">Ежедневно, 8:00–21:00</span>
       </a>
-      <a class="contact-card" href="#">
+      <a class="contact-card" href="#" data-contact-link="telegram">
         <span class="contact-label">Telegram</span>
-        <span class="contact-value">@zyorna_coffee</span>
+        <span class="contact-value" data-content="contacts.telegram">@zyorna_coffee</span>
       </a>
     </div>
   </section>
@@ -866,6 +866,8 @@
     <p>© 2026 Зёрна · Демо-сайт для портфолио - разработал <a href="https://t.me/mercy_exe" target="_blank" rel="noopener">Максим Барбашев</a></p>
   </footer>
 
+  <script src="supabase-config.js"></script>
+  <script src="site-content.js"></script>
   <script src="common.js?v=1785144082"></script>
 </body>
 </html>

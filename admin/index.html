@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Зёрна — управление сайтом</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="login-screen" id="loginScreen">
+    <section class="login-card">
+      <a class="brand" href="../index.html">Зёрна<span>CMS</span></a>
+      <p class="eyebrow">Управление сайтом</p>
+      <h1>Добрый день</h1>
+      <p class="login-copy">Войдите, чтобы обновить меню, контакты и тексты на сайте.</p>
+      <form id="loginForm" class="stack-form">
+        <label>Электронная почта<input type="email" name="email" autocomplete="email" required placeholder="you@example.com"></label>
+        <label>Пароль<input type="password" name="password" autocomplete="current-password" required placeholder="••••••••"></label>
+        <p class="form-message" id="loginMessage" aria-live="polite"></p>
+        <button class="button button-primary" type="submit">Войти в панель <span>→</span></button>
+      </form>
+    </section>
+  </main>
+
+  <div class="app-shell" id="appShell" hidden>
+    <aside class="sidebar">
+      <a class="brand" href="../index.html">Зёрна<span>CMS</span></a>
+      <nav class="nav-list" aria-label="Разделы управления">
+        <button class="nav-item is-active" data-panel="home"><span>⌁</span>Главная</button>
+        <button class="nav-item" data-panel="menu"><span>☕</span>Меню</button>
+        <button class="nav-item" data-panel="contacts"><span>⌖</span>Контакты</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <a class="view-site" href="../index.html" target="_blank" rel="noopener">Открыть сайт ↗</a>
+        <button class="sign-out" id="signOut" type="button">Выйти</button>
+      </div>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <div><p class="eyebrow" id="sectionEyebrow">Содержимое сайта</p><h1 id="sectionTitle">Главная страница</h1></div>
+        <div class="save-state" id="saveState">Все изменения сохранены</div>
+        <button class="button button-primary" id="saveButton" type="button">Сохранить <span>⌘S</span></button>
+      </header>
+
+      <div class="editor-panel is-active" data-editor="home">
+        <section class="editor-card">
+          <div class="card-heading"><div><p class="card-kicker">Первый экран</p><h2>Знакомство с кофейней</h2></div><span class="card-number">01</span></div>
+          <div class="form-grid">
+            <label>Надпись над заголовком<input data-path="hero.eyebrow" type="text"></label>
+            <label>Текст кнопки<input data-path="hero.cta" type="text"></label>
+            <label class="full">Заголовок<input data-path="hero.title" type="text"></label>
+            <label class="full">Описание<textarea data-path="hero.description" rows="3"></textarea></label>
+          </div>
+        </section>
+        <section class="editor-card">
+          <div class="card-heading"><div><p class="card-kicker">Свежая обжарка</p><h2>Карточка партии</h2></div><span class="card-number">02</span></div>
+          <div class="form-grid">
+            <label class="full">Название партии<input data-path="roast.origin" type="text"></label>
+            <label class="full">Обработка<input data-path="roast.processing" type="text"></label>
+            <label class="full">Вкусовые ноты <small>Через запятую</small><input data-path="roast.tags" data-list type="text"></label>
+          </div>
+        </section>
+      </div>
+
+      <div class="editor-panel" data-editor="menu">
+        <section class="editor-card menu-editor">
+          <div class="card-heading"><div><p class="card-kicker">Меню</p><h2>Напитки и еда</h2><p class="card-note">Добавляйте позиции, меняйте цены и порядок карточек.</p></div><button class="button button-secondary" type="button" id="addMenuItem">+ Новая позиция</button></div>
+          <div class="menu-list" id="menuList"></div>
+        </section>
+      </div>
+
+      <div class="editor-panel" data-editor="contacts">
+        <section class="editor-card">
+          <div class="card-heading"><div><p class="card-kicker">На связи</p><h2>Контакты</h2></div><span class="card-number">03</span></div>
+          <div class="form-grid">
+            <label class="full">Адрес<input data-path="contacts.address" type="text"></label>
+            <label>Часы работы<input data-path="contacts.hours" type="text"></label>
+            <label>Telegram<input data-path="contacts.telegram" type="text" placeholder="@username"></label>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <template id="menuItemTemplate">
+    <article class="menu-item-editor">
+      <div class="drag-mark" aria-hidden="true">⠿</div>
+      <div class="menu-item-fields">
+        <label>Название<input data-menu="name" type="text"></label>
+        <label>Цена<input data-menu="price" type="text" placeholder="250 ₽"></label>
+        <label>Категория<select data-menu="category"><option value="black">Чёрный кофе</option><option value="milk">С молоком</option><option value="cold">Холодное</option><option value="tea">Чай</option><option value="drinks">Другие напитки</option><option value="dessert">Десерты</option><option value="food">Еда</option></select></label>
+        <label>Фото <small>Путь в папке images или URL</small><input data-menu="image" type="text" placeholder="images/cappuccino.jpg"></label>
+        <label class="wide">Описание<textarea data-menu="description" rows="2"></textarea></label>
+        <label class="wide">Вкусовые ноты <small>Через запятую</small><input data-menu="tags" type="text"></label>
+      </div>
+      <button class="delete-item" type="button" title="Удалить позицию" aria-label="Удалить позицию">×</button>
+    </article>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../supabase-config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
