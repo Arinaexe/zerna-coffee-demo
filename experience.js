@@ -1,8 +1,9 @@
 'use strict';
 
-(() => {
+(async () => {
   const app = window.ZernaApp;
   if (!app) return;
+  await (window.ZernaContentReady || Promise.resolve());
 
   const normalize = (value) => value.toLocaleLowerCase('ru-RU').replace(/ё/g, 'е').trim();
   const make = (tag, className, text) => {
