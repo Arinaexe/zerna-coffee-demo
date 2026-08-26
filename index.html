@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; worker-src 'none'; form-action 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'none'; trusted-types 'none'; require-trusted-types-for 'script'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light">
   <title>Зёрна - спешелти-кофейня</title>
   <meta name="description" content="Зёрна - кофейня со своей обжаркой. Портфолио-демо сайта.">
+  <link rel="canonical" href="https://arinaexe.github.io/zerna-coffee-demo/index.html">
+  <meta property="og:locale" content="ru_RU"><meta property="og:type" content="website">
+  <meta property="og:title" content="Зёрна — спешелти-кофе · демо-проект"><meta property="og:description" content="Интерактивный демо-сайт кофейни: меню, вкусовой навигатор и кофейная лаборатория."><meta property="og:url" content="https://arinaexe.github.io/zerna-coffee-demo/index.html"><meta property="og:image" content="https://arinaexe.github.io/zerna-coffee-demo/images/og.png">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Зёрна — спешелти-кофе · демо-проект"><meta name="twitter:description" content="Интерактивный демо-сайт кофейни."><meta name="twitter:image" content="https://arinaexe.github.io/zerna-coffee-demo/images/og.png">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="style.css?v=1785144082">
+  <link rel="stylesheet" href="style.css?v=20260826">
 </head>
 <body>
 
@@ -56,12 +63,14 @@
         <li><a href="#contacts">Контакты</a></li>
       </ul>
     </nav>
-    <div class="status-badge" id="statusBadge">
+    <button class="status-badge" id="statusBadge" type="button" aria-describedby="statusDetails">
       <span class="status-dot"></span>
       <span class="status-text">Открыто сейчас</span>
-    </div>
+    </button>
+    <span class="status-details" id="statusDetails" role="status" aria-live="polite"></span>
   </header>
 
+  <main id="main-content">
   <section class="hero">
     <div class="parallax-wrap">
       <img class="parallax-img hero-poster" src="video/hero-pour-poster.jpg" alt="" />
@@ -110,11 +119,16 @@
           <span class="batch-zone zone-fade"></span>
           <span class="batch-marker" id="batchMarker"></span>
         </div>
-        <div class="batch-gauge-labels">
+      <div class="batch-gauge-labels">
           <span>просыпается</span>
           <span>пик вкуса</span>
           <span>раскрывается тише</span>
         </div>
+      </div>
+      <div class="freshness-control">
+        <label for="freshnessRange">Проверить вкус на другой день после обжарки</label>
+        <input id="freshnessRange" type="range" min="1" max="30" value="5" step="1">
+        <output id="freshnessSummary" for="freshnessRange">День 5 — зерно входит в пик вкуса</output>
       </div>
       <div class="flavor-tags">
         <span>ягоды</span>
@@ -143,11 +157,97 @@
     </div>
   </section>
 
+  <section class="coffee-lab reveal" id="coffee-lab">
+    <div class="section-heading">
+      <span class="section-eyebrow">Кофейная лаборатория</span>
+      <h2>Найди свою чашку</h2>
+      <p class="section-hint">Три интерактивных способа разобраться во вкусе. Всё работает прямо в браузере и ничего не отправляет.</p>
+    </div>
+    <div class="lab-grid">
+      <article class="lab-card lab-card-featured">
+        <span class="lab-index">01</span>
+        <h3>Навигатор по кофе</h3>
+        <p>Ответь на четыре коротких вопроса — бариста подберёт напиток из меню.</p>
+        <button class="lab-button" id="openQuiz" type="button">Подобрать напиток</button>
+      </article>
+      <article class="lab-card">
+        <span class="lab-index">02</span>
+        <h3>Карта вкуса</h3>
+        <p>Добавь к сравнению любые две карточки и посмотри крепость, сладость, кислотность и плотность.</p>
+        <div class="taste-mini" id="tasteMapPreview" aria-label="Пример вкусового профиля фильтр-кофе">
+          <span><b>Крепость</b><i style="--score: 58%"></i></span>
+          <span><b>Сладость</b><i style="--score: 45%"></i></span>
+          <span><b>Кислотность</b><i style="--score: 82%"></i></span>
+          <span><b>Плотность</b><i style="--score: 34%"></i></span>
+        </div>
+        <button class="lab-button lab-button-secondary" id="openCompareGuide" type="button">Выбрать напитки</button>
+      </article>
+      <article class="lab-card drink-builder" id="drinkBuilder">
+        <span class="lab-index">03</span>
+        <h3>Собери напиток</h3>
+        <div class="builder-grid">
+          <label>Основа
+            <select id="builderBase">
+              <option value="espresso">Эспрессо</option>
+              <option value="cappuccino">Капучино</option>
+              <option value="latte">Латте</option>
+              <option value="filter">Фильтр V60</option>
+            </select>
+          </label>
+          <label>Объём
+            <select id="builderSize">
+              <option value="small">Маленький</option>
+              <option value="medium" selected>Средний</option>
+              <option value="large">Большой</option>
+            </select>
+          </label>
+          <label>Молоко
+            <select id="builderMilk">
+              <option value="regular">Обычное</option>
+              <option value="oat">Овсяное</option>
+              <option value="almond">Миндальное</option>
+              <option value="none">Без молока</option>
+            </select>
+          </label>
+          <label>Добавка
+            <select id="builderSyrup">
+              <option value="none">Без сиропа</option>
+              <option value="vanilla">Ваниль</option>
+              <option value="caramel">Карамель</option>
+            </select>
+          </label>
+        </div>
+        <label class="builder-check"><input id="builderExtra" type="checkbox"> Дополнительный шот</label>
+        <div class="builder-result" aria-live="polite">
+          <span class="builder-cup" aria-hidden="true"><i id="builderFill"></i></span>
+          <div><strong id="builderName">Капучино · 300 мл</strong><span id="builderTaste">Сбалансированный и сливочный</span><b id="builderPrice">290 ₽</b></div>
+        </div>
+        <p class="demo-caption">Демонстрационный расчёт, не является заказом или публичной офертой.</p>
+      </article>
+    </div>
+  </section>
+
   <section class="catalog-section" id="menu">
     <div class="section-heading reveal">
       <span class="section-eyebrow">Меню</span>
       <h2>Что попробовать</h2>
       <p class="section-hint">Выбери категорию, чтобы открыть список - наведи (или тапни на телефоне) на карточку, покажем описание</p>
+    </div>
+    <div class="menu-tools" aria-label="Поиск и фильтры меню">
+      <label class="menu-search"><span class="sr-only">Найти напиток или блюдо</span><input id="menuSearch" type="search" placeholder="Найти напиток, вкус или десерт…" autocomplete="off" maxlength="60"></label>
+      <div class="filter-chips" id="menuFilters" aria-label="Быстрые фильтры">
+        <button type="button" class="filter-chip active" data-filter="all" aria-pressed="true">Всё</button>
+        <button type="button" class="filter-chip" data-filter="decaf" aria-pressed="false">Без кофеина</button>
+        <button type="button" class="filter-chip" data-filter="plant" aria-pressed="false">Растительное</button>
+        <button type="button" class="filter-chip" data-filter="budget" aria-pressed="false">До 250 ₽</button>
+        <button type="button" class="filter-chip" data-filter="cold" aria-pressed="false">Холодное</button>
+        <button type="button" class="filter-chip" data-filter="savory" aria-pressed="false">Несладкое</button>
+      </div>
+      <div class="menu-tool-row">
+        <p id="menuResultCount" role="status" aria-live="polite">Выберите категорию или воспользуйтесь поиском</p>
+        <button type="button" class="usual-button" id="usualButton">Мне как обычно</button>
+      </div>
+      <p class="barista-phrase" id="baristaPhrase" aria-live="polite">Бариста: сегодня советую начать с фильтра — зерно как раз в хорошем окне.</p>
     </div>
     <div class="menu-categories">
       <div class="menu-cat-item" data-cat="black">
@@ -775,8 +875,12 @@
           <svg viewBox="0 0 24 24"><path d="M4 8h13v5a6 6 0 0 1-12 0V8z"/><path d="M17 9h2a3 3 0 0 1 0 6h-2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="18" width="15" height="1.6" rx="0.8"/></svg>
         </span>
       </div>
-      <p class="loyalty-note">Пять чашек куплено - шестая бесплатно. Штамп ставим на карту при каждой покупке, срока годности у него нет.</p>
-      <a class="loyalty-cta" href="https://t.me/mercy_exe" target="_blank" rel="noopener">Получить карту →</a>
+      <p class="loyalty-note" id="loyaltyMessage">Пять чашек куплено - шестая бесплатно. Попробуйте демо-карту: отметки сохраняются только на этом устройстве.</p>
+      <div class="loyalty-actions">
+        <button class="loyalty-cta" id="addStamp" type="button">Поставить демо-штамп</button>
+        <button class="text-button" id="resetStamps" type="button">Сбросить карту</button>
+      </div>
+      <p class="demo-caption">Это интерактивная демонстрация, а не настоящая программа лояльности.</p>
     </div>
   </section>
 
@@ -821,19 +925,20 @@
     <div class="section-heading">
       <span class="section-eyebrow">Точки</span>
       <h2>Три места в Краснодаре</h2>
+      <p class="section-hint">Демонстрационные адреса — перед публикацией реальной кофейни их нужно заменить на фактические.</p>
     </div>
     <div class="locations-grid">
-      <a class="location-card" href="https://yandex.ru/maps/?text=Краснодар, ул. Красная, 122" target="_blank" rel="noopener">
+      <a class="location-card" href="https://yandex.ru/maps/?text=Краснодар, ул. Красная, 122" target="_blank" rel="noopener noreferrer">
         <span class="location-name">На Красной</span>
         <span class="location-address">ул. Красная, 122</span>
         <span class="location-link">Открыть на карте →</span>
       </a>
-      <a class="location-card" href="https://yandex.ru/maps/?text=Краснодар, ул. Северная, 315" target="_blank" rel="noopener">
+      <a class="location-card" href="https://yandex.ru/maps/?text=Краснодар, ул. Северная, 315" target="_blank" rel="noopener noreferrer">
         <span class="location-name">На Северной</span>
         <span class="location-address">ул. Северная, 315</span>
         <span class="location-link">Открыть на карте →</span>
       </a>
-      <a class="location-card" href="https://yandex.ru/maps/?text=Краснодар, Кубанская набережная, 45" target="_blank" rel="noopener">
+      <a class="location-card" href="https://yandex.ru/maps/?text=Краснодар, Кубанская набережная, 45" target="_blank" rel="noopener noreferrer">
         <span class="location-name">На набережной</span>
         <span class="location-address">Кубанская набережная, 45</span>
         <span class="location-link">Открыть на карте →</span>
@@ -847,25 +952,53 @@
       <h2>Ждём в гости</h2>
     </div>
     <div class="contacts-grid">
-      <a class="contact-card" href="#">
+      <a class="contact-card" href="https://yandex.ru/maps/?text=Краснодар, ул. Красная, 122" target="_blank" rel="noopener noreferrer">
         <span class="contact-label">Адрес</span>
-        <span class="contact-value">Малая Дмитровка, 12</span>
+        <span class="contact-value">Краснодар, ул. Красная, 122</span>
       </a>
-      <a class="contact-card" href="#">
+      <div class="contact-card">
         <span class="contact-label">Часы работы</span>
         <span class="contact-value">Ежедневно, 8:00–21:00</span>
-      </a>
-      <a class="contact-card" href="#">
-        <span class="contact-label">Telegram</span>
-        <span class="contact-value">@zyorna_coffee</span>
+      </div>
+      <a class="contact-card" href="https://t.me/mercy_exe" target="_blank" rel="noopener noreferrer">
+        <span class="contact-label">О проекте</span>
+        <span class="contact-value">Написать разработчику</span>
       </a>
     </div>
   </section>
 
+  </main>
+
   <footer class="footer">
-    <p>© 2026 Зёрна · Демо-сайт для портфолио - разработал <a href="https://t.me/mercy_exe" target="_blank" rel="noopener">Максим Барбашев</a></p>
+    <p>© 2026 Зёрна · Демо-сайт для портфолио - разработал <a href="https://t.me/mercy_exe" target="_blank" rel="noopener noreferrer">Максим Барбашев</a></p>
   </footer>
 
-  <script src="common.js?v=1785144082"></script>
+  <dialog class="app-dialog" id="quizDialog" aria-labelledby="quizTitle">
+    <div class="dialog-head"><div><span class="section-eyebrow">Бариста рядом</span><h2 id="quizTitle">Какой кофе вам подойдёт?</h2></div><button type="button" class="dialog-close" data-dialog-close aria-label="Закрыть">×</button></div>
+    <div class="quiz-grid">
+      <label>Какой характер хочется?
+        <select id="quizStrength"><option value="soft">Мягкий</option><option value="balanced">Сбалансированный</option><option value="strong">Крепкий</option></select>
+      </label>
+      <label>Что насчёт молока?
+        <select id="quizMilk"><option value="yes">С молоком</option><option value="no">Без молока</option><option value="any">Неважно</option></select>
+      </label>
+      <label>Какой вкус ближе?
+        <select id="quizFlavor"><option value="sweet">Шоколад и карамель</option><option value="fruity">Ягоды и цитрус</option><option value="neutral">Спокойный и ровный</option></select>
+      </label>
+      <label>Температура
+        <select id="quizTemp"><option value="hot">Горячий</option><option value="cold">Холодный</option><option value="any">Неважно</option></select>
+      </label>
+    </div>
+    <button class="lab-button" id="runQuiz" type="button">Получить рекомендацию</button>
+    <div class="quiz-result" id="quizResult" aria-live="polite"></div>
+  </dialog>
+
+  <dialog class="app-dialog compare-dialog" id="compareDialog" aria-labelledby="compareTitle">
+    <div class="dialog-head"><div><span class="section-eyebrow">Карта вкуса</span><h2 id="compareTitle">Сравнение напитков</h2></div><button type="button" class="dialog-close" data-dialog-close aria-label="Закрыть">×</button></div>
+    <div id="compareContent"></div>
+  </dialog>
+
+  <script src="common.js?v=20260826"></script>
+  <script src="experience.js?v=20260826"></script>
 </body>
 </html>

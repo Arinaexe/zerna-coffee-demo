@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arinaexe.github.io/zerna-coffee-demo/sitemap.xml

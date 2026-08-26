@@ -3,10 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; worker-src 'none'; form-action 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'none'; trusted-types 'none'; require-trusted-types-for 'script'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light">
   <title>Чем фильтр отличается от эспрессо - Журнал Зёрна</title>
   <meta name="description" content="Разбираемся, почему одно и то же зерно может быть кислым в фильтре и горьким в эспрессо.">
+  <link rel="canonical" href="https://arinaexe.github.io/zerna-coffee-demo/blog-filtr-vs-espresso.html">
+  <meta property="og:locale" content="ru_RU"><meta property="og:type" content="article"><meta property="og:title" content="Чем фильтр отличается от эспрессо"><meta property="og:description" content="Почему одно зерно раскрывается по-разному и как выбрать метод заваривания."><meta property="og:url" content="https://arinaexe.github.io/zerna-coffee-demo/blog-filtr-vs-espresso.html"><meta property="og:image" content="https://arinaexe.github.io/zerna-coffee-demo/images/filter-v60.jpg">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Чем фильтр отличается от эспрессо"><meta name="twitter:description" content="Почему одно зерно раскрывается по-разному."><meta name="twitter:image" content="https://arinaexe.github.io/zerna-coffee-demo/images/filter-v60.jpg">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="style.css?v=1785144082">
+  <link rel="stylesheet" href="style.css?v=20260826">
 </head>
 <body>
 
@@ -83,12 +89,45 @@
     <p>Поэтому одна и та же эфиопская партия может раскрыться цветочной и ягодной во фильтре - и звучать шоколадно и тяжело в эспрессо. Ни один из вариантов не «правильнее»: это просто два разных способа посмотреть на одно и то же зерно.</p>
 
     <p>Если коротко: хочется быстро и бодро - эспрессо. Есть пять минут и интерес попробовать зерно во всех оттенках - фильтр. В «Зёрнах» бариста всегда подскажут, какая партия сейчас лучше раскрывается в каком методе.</p>
+
+    <section class="brew-calculator" id="brewCalculator" aria-labelledby="brewCalculatorTitle">
+      <span class="section-eyebrow">Практика</span>
+      <h2 id="brewCalculatorTitle">Калькулятор заваривания</h2>
+      <p>Выберите метод, объём и желаемую крепость — получите стартовый рецепт, который можно подстроить под своё зерно.</p>
+      <div class="brew-controls">
+        <label>Метод
+          <select id="brewMethod">
+            <option value="v60">V60</option>
+            <option value="aeropress">Аэропресс</option>
+            <option value="french">Френч-пресс</option>
+            <option value="chemex">Кемекс</option>
+          </select>
+        </label>
+        <label>Вода: <output id="brewWaterOutput" for="brewWater">300 мл</output>
+          <input id="brewWater" type="range" min="150" max="800" step="50" value="300">
+        </label>
+        <label>Крепость
+          <select id="brewStrength">
+            <option value="light">Лёгкая</option>
+            <option value="balanced" selected>Сбалансированная</option>
+            <option value="strong">Крепкая</option>
+          </select>
+        </label>
+      </div>
+      <div class="brew-result" aria-live="polite">
+        <div><span>Кофе</span><strong id="brewCoffee">19 г</strong></div>
+        <div><span>Температура</span><strong id="brewTemperature">94 °C</strong></div>
+        <div><span>Время</span><strong id="brewTime">2:45–3:15</strong></div>
+        <div><span>Помол</span><strong id="brewGrind">средний</strong></div>
+      </div>
+      <p class="demo-caption">Рецепт справочный: вода, зерно и кофемолка влияют на результат.</p>
+    </section>
   </article>
 
   <footer class="footer">
-    <p>© 2026 Зёрна · Демо-сайт для портфолио - разработал <a href="https://t.me/mercy_exe" target="_blank" rel="noopener">Максим Барбашев</a></p>
+    <p>© 2026 Зёрна · Демо-сайт для портфолио - разработал <a href="https://t.me/mercy_exe" target="_blank" rel="noopener noreferrer">Максим Барбашев</a></p>
   </footer>
 
-  <script src="common.js?v=1785144082"></script>
+  <script src="common.js?v=20260826"></script>
 </body>
 </html>

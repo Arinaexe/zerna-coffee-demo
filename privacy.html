@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; worker-src 'none'; form-action 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'none'; trusted-types 'none'; require-trusted-types-for 'script'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light">
+  <title>Конфиденциальность — Зёрна</title>
+  <meta name="description" content="Информация о приватности и локальном хранении настроек на демонстрационном сайте «Зёрна». ">
+  <link rel="canonical" href="https://arinaexe.github.io/zerna-coffee-demo/privacy.html">
+  <meta property="og:locale" content="ru_RU"><meta property="og:type" content="website"><meta property="og:title" content="Конфиденциальность — Зёрна"><meta property="og:description" content="Как демо-сайт хранит локальные настройки и защищает приватность."><meta property="og:url" content="https://arinaexe.github.io/zerna-coffee-demo/privacy.html"><meta property="og:image" content="https://arinaexe.github.io/zerna-coffee-demo/images/og.png">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Конфиденциальность — Зёрна"><meta name="twitter:description" content="Как демо-сайт защищает приватность."><meta name="twitter:image" content="https://arinaexe.github.io/zerna-coffee-demo/images/og.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css?v=20260826">
+</head>
+<body>
+  <div class="scroll-progress"></div>
+  <header class="header">
+    <a class="logo" href="index.html">Зёрна</a>
+    <nav class="nav" aria-label="Основная навигация">
+      <ul>
+        <li><a href="o-nas.html">О нас</a></li>
+        <li><a href="index.html#menu">Меню</a></li>
+        <li><a href="blog.html">Журнал</a></li>
+        <li><a href="vakansii.html">Вакансии</a></li>
+        <li><a href="index.html#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <button class="status-badge" id="statusBadge" type="button" aria-describedby="statusDetails">
+      <span class="status-dot"></span><span class="status-text">Открыто сейчас</span>
+    </button>
+    <span class="status-details" id="statusDetails" role="status" aria-live="polite"></span>
+  </header>
+
+  <section class="page-header legal-page-header">
+    <div class="page-header-scrim"></div>
+    <div class="page-header-content">
+      <span class="section-eyebrow">Приватность</span>
+      <h1>Политика конфиденциальности</h1>
+    </div>
+  </section>
+
+  <main class="page-content legal-content">
+    <p class="legal-updated">Редакция от 26 августа 2026 года</p>
+    <div class="legal-callout"><strong>Коротко:</strong> это демонстрационный сайт. Он не принимает заказы, не содержит форм, не подключает аналитику и не отправляет введённые пользователем сведения владельцу сайта.</div>
+
+    <h2>1. Кто отвечает за сайт</h2>
+    <p>Демонстрационный проект «Зёрна» создан Максимом Барбашевым для портфолио. Связаться по вопросам сайта можно через <a href="https://t.me/mercy_exe" target="_blank" rel="noopener noreferrer">Telegram разработчика</a>.</p>
+
+    <h2>2. Какие данные сайт собирает</h2>
+    <p>Сам сайт не запрашивает имя, телефон, адрес электронной почты, платёжные сведения или иные данные, позволяющие идентифицировать посетителя. Регистрации, форм обратной связи, заказа, бронирования, рекламных и аналитических счётчиков нет.</p>
+
+    <h2>3. Что хранится на устройстве</h2>
+    <p>Для интерактивных функций браузер может локально сохранить избранные позиции, состояние демонстрационной карты лояльности, факт показа уведомления и пользовательские настройки. Эти сведения остаются в хранилище браузера, не передаются владельцу сайта и не используются для рекламы или профилирования.</p>
+    <p><button class="text-button legal-clear-button" id="clearLocalData" type="button">Удалить локальные данные «Зёрен»</button></p>
+    <p id="clearLocalDataStatus" role="status" aria-live="polite"></p>
+
+    <h2>4. Технические журналы хостинга</h2>
+    <p>Сайт размещён на GitHub Pages. При загрузке страниц провайдер хостинга может самостоятельно получать технические сведения, включая IP-адрес, дату запроса и данные браузера, в соответствии со своей политикой. Владелец этого демо-сайта не подключал журналирование посетителей и не получает доступ к индивидуальным логам через код сайта.</p>
+
+    <h2>5. Переходы на другие сайты</h2>
+    <p>Ссылки на карты и Telegram открываются только по действию посетителя. После перехода обработка данных регулируется правилами соответствующего сервиса. На страницах «Зёрен» сторонние виджеты и удалённые шрифты не загружаются.</p>
+
+    <h2>6. Если проект станет настоящей кофейней</h2>
+    <p>До добавления заказов, анкет, рассылок, аналитики или иных способов сбора персональных данных владелец обязан определить оператора, цели и сроки обработки, обеспечить необходимые организационные и технические меры, проверить обязанность уведомить Роскомнадзор, соблюдать требования локализации и получать отдельное согласие там, где оно требуется законом.</p>
+
+    <h2>7. Изменения</h2>
+    <p>Политика обновляется при изменении функций сайта. Новая редакция действует с момента публикации на этой странице.</p>
+  </main>
+
+  <footer class="footer"><p>© 2026 Зёрна · Демонстрационный проект — разработал <a href="https://t.me/mercy_exe" target="_blank" rel="noopener noreferrer">Максим Барбашев</a></p></footer>
+  <script src="common.js?v=20260826"></script>
+</body>
+</html>
